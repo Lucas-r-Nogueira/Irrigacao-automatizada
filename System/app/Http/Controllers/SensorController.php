@@ -17,7 +17,7 @@ class SensorController extends Controller
 
     public function index()
     {
-        $sensors = Routine::all();
+        $sensors = Sensor::all();
 
         if(!$sensors)
             return response()->json(['error' => 'Não há sensores cadastrados'], 404);

@@ -1,0 +1,7 @@
+{
+  "name": "IrrigacaoAutomatizada",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

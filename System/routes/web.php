@@ -1,29 +1,49 @@
 <?php
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+/*
+|--------------------------------------------------------------------------
+| Sensor Routes
+|--------------------------------------------------------------------------
+*/
+
+$router->group(['prefix' => 'sensor'], function () use ($router) {
+    $router->get('/{id}/rotinas/irrigacoes', 'SensorController@getSensorWithRoutinesAndIrrigations');
+    $router->get('/{id}/rotinas', 'SensorController@getSensorWithRoutines');
+    $router->get('/{id}/irrigacoes', 'SensorController@getSensorHistoryOfIrrigations');
+    $router->get('/', 'SensorController@index');
+    $router->get('/{id}', 'SensorController@show');
+    $router->post('/adicionar', 'SensorController@store');
+    $router->put('/editar', 'SensorController@update');
+    $router->delete('/{id}', 'SensorController@destroy');
 });
 
-$router->get('rotina/{id}/sensor', 'RoutineController@getSensorOfRoutine');
-$router->get('rotinas', 'RoutineController@index');
-$router->get('rotina/{id}', 'RoutineController@show');
-$router->post('rotina', 'RoutineController@store');
-$router->put('rotina', 'RoutineController@update');
-$router->delete('rotina/{id}', 'RoutineController@destroy');
+/*
+|--------------------------------------------------------------------------
+| Rotina Routes
+|--------------------------------------------------------------------------
+*/
 
-$router->get('irrigacao/{id}/sensor', 'IrrigationController@getSensorOfIrrigation');
-$router->put('irrigacao/{id}/finalizar', 'IrrigationController@finishIrrigashion');
-$router->get('irrigacoes', 'IrrigationController@index');
-$router->get('irrigacao/{id}', 'IrrigationController@show');
-$router->post('irrigacao', 'IrrigationController@store');
-$router->put('irrigacao', 'IrrigationController@update');
-$router->delete('irrigacao/{id}', 'IrrigationController@destroy');
+$router->group(['prefix' => 'rotina'], function () use ($router) {
+    $router->get('/{id}/sensor', 'RoutineController@getSensorOfRoutine');
+    $router->get('/', 'RoutineController@index');
+    $router->get('/{id}', 'RoutineController@show');
+    $router->post('/adicionar', 'RoutineController@store');
+    $router->put('/editar', 'RoutineController@update');
+    $router->delete('/{id}', 'RoutineController@destroy');
+});
 
-$router->get('/sensor/{id}/rotinas/irrigacoes', 'SensorController@getSensorWithRoutinesAndIrrigations');
-$router->get('/sensor/{id}/rotinas', 'SensorController@getSensorWithRoutines');
-$router->get('/sensor/{id}/irrigacoes', 'SensorController@getSensorHistoryOfIrrigations');
-$router->get('/sensores', 'SensorController@index');
-$router->get('/sensor/{id}', 'SensorController@show');
-$router->post('/sensor', 'SensorController@store');
-$router->put('/sensor', 'SensorController@update');
-$router->delete('/sensor/{id}', 'SensorController@destroy');
+/*
+|--------------------------------------------------------------------------
+| Irrigacao Routes
+|--------------------------------------------------------------------------
+*/
+
+$router->group(['prefix' => 'irrigacao'], function () use ($router) {
+    $router->get('/{id}/sensor', 'IrrigationController@getSensorOfIrrigation');
+    $router->put('/{id}/finalizar', 'IrrigationController@finishIrrigashion');
+    $router->get('/', 'IrrigationController@index');
+    $router->get('/{id}', 'IrrigationController@show');
+    $router->post('/adicionar', 'IrrigationController@store');
+    $router->put('/editar', 'IrrigationController@update');
+    $router->delete('/{id}', 'IrrigationController@destroy');
+});

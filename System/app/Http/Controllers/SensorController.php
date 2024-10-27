@@ -15,9 +15,21 @@ class SensorController extends Controller
         return response()->json($sensor, 200);
     }
 
+    public function getSensorHistoryOfIrrigations($id) {
+
+        $sensor = Sensor::with('irrigations')->find($id);
+        return response()->json($sensor, 200);
+    }
+
+    public function getSensorWithRoutinesAndIrrigations($id) {
+
+        $sensor = Sensor::with(['routines', 'irrigations'])->find($id);
+        return response()->json($sensor, 200);
+    }
+
     public function index()
     {
-        $sensors = Routine::all();
+        $sensors = Sensor::all();
 
         if(!$sensors)
             return response()->json(['error' => 'Não há sensores cadastrados'], 404);

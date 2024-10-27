@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sensor extends Model
 {
-    // protected $table = 'sensors';
 
     protected $fillable = [
         'nome',
@@ -16,9 +15,13 @@ class Sensor extends Model
     ];
 
     // pega as rotinas associadas a determinado sensor
-    public function rotinas() {
+    public function routines() {
         // id sensor corresponde ao atributo em rotina
-        return $this->hasmany(Rotina::class, 'id_sensor');
+        return $this->hasmany(Routine::class, 'id_sensor');
+    }
+
+    public function irrigations() {
+        return $this->hasmany(Irrigation::class, 'id_sensor');
     }
 }
 

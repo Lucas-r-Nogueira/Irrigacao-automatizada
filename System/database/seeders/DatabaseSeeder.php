@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         // Aqui você registra o seeder de sensores e rotinas
         $this->call(SensorSeeder::class);
         $this->call(RoutineSeeder::class);
+        $this->call(IrrigationSeeder::class);
     }
 }

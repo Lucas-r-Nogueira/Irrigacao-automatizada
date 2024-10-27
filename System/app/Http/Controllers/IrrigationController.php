@@ -2,46 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Routine;
+use App\Models\Irrigation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class RoutineController extends Controller
+class IrrigationController extends Controller
 {
 
-    public function getSensorOfRoutine($id) {
-        $routines = Routine::with('sensorRoutine')->find($id);
+    public function finishIrrigashion($id) {
+        $irrigation = Irrigation::find($id);
 
-        return response()->json($routines, 200);
+        if(!$irrigation)
+            return response()->json(['error' => 'Irrigação não encontrada'], 404);
+
+        $irrigation->status = true;
+
+        $irrigation->save();
+
+        return response()->json($irrigation, 200);
+
+    }
+
+    public function getSensorOfIrrigation($id) {
+        $irrigations = Irrigation::with('sensorIrrigation')->find($id);
+
+        return response()->json($irrigations, 200);
     }
 
     public function index()
     {
-        $routines = Routine::all();
+        $irrigations = Irrigation::all();
 
-        if(!$routines)
+        if(!$irrigations)
             return response()->json(['error' => 'Não há rotinas cadastradas'], 404);
 
-        return response()->json($routines, 200);
+        return response()->json($irrigations, 200);
     }
 
     public function show($id)
     {
-        $routine = Routine::find($id);
+        $irrigation = Irrigation::find($id);
 
-        if(!$routine)
+        if(!$irrigation)
             return response()->json(['error' => 'Rotina não encontrada'], 404);
 
-        return response()->json($routine, 200);
+        return response()->json($irrigation, 200);
     }
 
     public function store(Request $request)
     {
         $regras = [
-            'nome' => ['required', 'string', 'max:255'],
-            'dias_de_ativacao' => ['nullable', 'string', 'size:7', 'regex:/^[01]+$/'],
             'horario_de_inicio' => ['required', 'date_format:H:i:s'],
             'duracao' => ['required', 'integer', 'min:0'],
+            'status' => ['required', 'boolean'],
             'id_sensor' => ['required', 'integer', 'min:0']
         ];
 
@@ -50,58 +63,56 @@ class RoutineController extends Controller
         if($validacao->fails())
             return response()->json($validacao->errors(), 422);
 
-        $routine = Routine::create([
-            'nome' => $request->input('nome'),
-            'dias_de_ativacao' => $request->input('dias_de_ativacao'),
+        $irrigation = Irrigation::create([
             'horario_de_inicio' => $request->input('horario_de_inicio'),
             'duracao' => $request->input('duracao'),
+            'status' => $request->input('status'),
             'id_sensor' => $request->input('id_sensor')
         ]);
 
-        return response()->json($routine, 201);
+        return response()->json($irrigation, 201);
     }
 
     public function update(Request $request)
     {
         $regras = [
             'id' => ['required', 'integer', 'min:0'],
-            'nome' => ['nullable', 'string', 'max:255'],
-            'dias_de_ativacao' => ['nullable', 'string', 'size:7', 'regex:/^[01]+$/'],
             'horario_de_inicio' => ['nullable', 'date_format:H:i:s'],
             'duracao' => ['nullable', 'integer', 'min:0'],
+            'status' => ['nullable', 'boolean'],
             'id_sensor' => ['nullable', 'integer', 'min:0']
-        ];
+            ];
 
         $validacao = Validator::make($request->all(), $regras);
 
         if($validacao->fails())
             return response()->json($validacao->errors(), 422);
 
-        $routine = Routine::find($request->input('id'));
-        if(!$routine)
+        $irrigation = Irrigation::find($request->input('id'));
+        if(!$irrigation)
             return response()->json(['error' => 'Rotina não encontrada'], 404);
 
-        $atributos = ['nome', 'dias_de_ativacao', 'horario_de_inicio', 'duracao', 'id_sensor'];
+        $atributos = ['horario_de_inicio', 'duracao', 'status', 'id_sensor'];
 
         foreach ($atributos as $atributo) {
             $request->input($atributo) !== null
-                ? $routine->$atributo = $request->input($atributo)
+                ? $irrigation->$atributo = $request->input($atributo)
                 : null;
         }
-        $routine->save();
+        $irrigation->save();
 
-        return response()->json($routine, 200);
+        return response()->json($irrigation, 200);
     }
 
     public function destroy($id)
     {
 
-        $routine = Routine::find($id);
+        $irrigation = Irrigation::find($id);
 
-        if(!$routine)
+        if(!$irrigation)
             return response()->make(404);
 
-        $routine->delete();
+        $irrigation->delete();
 
         return response()->make();
     }

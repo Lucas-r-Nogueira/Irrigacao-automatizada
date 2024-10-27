@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Routine extends Model
+class Irrigation extends Model
 {
 
     protected $fillable = [
-        'nome',
-        'dias_de_ativacao',
         'horario_de_inicio',
         'duracao',
+        'status',
         'id_sensor'
     ];
 
     // pega o sensor ao qual a rotina esta associada
-    public function sensorRoutine()
+    public function sensorIrrigacao()
     {
         return $this->belongsTo(Sensor::class, 'id_sensor');
     }

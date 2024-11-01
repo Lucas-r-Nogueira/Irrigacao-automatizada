@@ -10,9 +10,12 @@
 .splash__screen{
     width: 100%;
     height: 100vh;
-    justify-content: center;
-    align-items: center;
     background-color: var(--ion-color-primary);
+    ion-col{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .splash__logo{
         width: 150px;
         animation: smooth 2s ;

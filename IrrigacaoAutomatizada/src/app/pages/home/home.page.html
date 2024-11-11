@@ -1,89 +1,79 @@
 <ion-content [fullscreen]="true">
   <ion-header [translucent]="true">
-    <ion-img
-      src="../../../assets/image/logo.png"
-    ></ion-img>
-</ion-header>
+    <ion-img src="../../../assets/image/logo.png"></ion-img>
+  </ion-header>
 
-<ion-row class="container__sensores">
-  <ion-col size="12">
-    <ion-row class="container__sensores_header">
+  <ion-row class="container__sensores">
+    <ion-col size="12">
+      <ion-row class="container__sensores_header">
         <ion-col>
           <ion-title>Sensores</ion-title>
         </ion-col>
         <ion-col>
           <ion-fab>
-            <ion-fab-button>
+            <ion-fab-button id="open-modal">
               <ion-icon name="add"></ion-icon>
             </ion-fab-button>
+              <!-- Modal Acionar Sensor -->
+              <app-modal-sensor></app-modal-sensor>
           </ion-fab>
         </ion-col>
-    </ion-row>
+      </ion-row>
 
-    <ion-row class="container__carrossel">
-      <ion-col>
-        <swiper-container loop="true" navigation="false">
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-        </swiper-container>
-      </ion-col>
-    </ion-row>
-  </ion-col>
-</ion-row>
-<ion-row class="container__historico">
-  <ion-col size="12"> 
-    <ion-row class="container__historico_header">
-      <ion-col>
-        <ion-title>Histórico</ion-title>
-      </ion-col>
-      <ion-col>
-        <ion-select label="Outline select" label-placement="floating" fill="outline">
-          <ion-select-option value="apple">Apple</ion-select-option>
-          <ion-select-option value="banana">Banana</ion-select-option>
-          <ion-select-option value="orange">Orange</ion-select-option>
-        </ion-select>
-      </ion-col>
-      <ion-row class="container__carrossel">
-      <ion-col>
-        <swiper-container loop="true" navigation="false">
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-          <swiper-slide>
-            <ion-title>Olá mundo</ion-title>
-          </swiper-slide>
-        </swiper-container>
-      </ion-col>
-    </ion-row>
+      <ion-row class="container__carrossel_sensores">
+        <ion-col>
+          <swiper-container loop="true" navigation="false" id="carrossel__sensor" grabCursor="true" centeredSlides="false">
+            <swiper-slide>
+              <app-card-sensor></app-card-sensor>
+            </swiper-slide>
+            <swiper-slide>
+              <app-card-sensor></app-card-sensor>
+            </swiper-slide>
+            <swiper-slide>
+              <app-card-sensor></app-card-sensor>
+            </swiper-slide>
+            <swiper-slide>
+              <app-card-sensor></app-card-sensor>
+            </swiper-slide>
+          </swiper-container>
+        </ion-col>
+      </ion-row>
+    </ion-col>
   </ion-row>
-  </ion-col>
-</ion-row>
+
+  <ion-row class="container__historico">
+    <ion-col size="12">
+      <ion-row class="container__historico_header">
+        <ion-col>
+          <ion-title>Histórico</ion-title>
+        </ion-col>
+        <ion-col class="container__select">
+          <ion-select label="Selecione um sensor" label-placement="floating" fill="outline" class="select__sensor">
+            <ion-select-option value="apple">Apple</ion-select-option>
+            <ion-select-option value="banana">Banana</ion-select-option>
+            <ion-select-option value="orange">Orange</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="container__carrossel_historico">
+        <ion-col>
+          <swiper-container loop="true" navigation="false" id="carrossel__historico" grabCursor="true" centeredSlides="false">
+            <swiper-slide>
+              <app-card-historico></app-card-historico>
+            </swiper-slide>
+            <swiper-slide>
+              <app-card-historico></app-card-historico>
+            </swiper-slide>
+            <swiper-slide>
+              <app-card-historico></app-card-historico>
+            </swiper-slide>
+            <swiper-slide>
+              <app-card-historico></app-card-historico>
+            </swiper-slide>
+          </swiper-container>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
 </ion-content>

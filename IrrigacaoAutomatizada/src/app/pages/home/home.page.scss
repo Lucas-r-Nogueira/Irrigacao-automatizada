@@ -12,7 +12,7 @@ ion-header{
 
 .container__sensores{
     width: 100%;
-    height: 250px;
+    height: 400px;
     margin-top: 30px;
     ion-col{
         padding: 0;
@@ -44,6 +44,72 @@ ion-header{
         }
         ion-col:nth-child(2){
             justify-content: end;
+        }
+    }
+
+    .container__carrossel_sensores{
+        width: 100%;
+        height: 320px;
+        #carrossel__sensor{
+            width: 100%;
+            height: 100%;
+            swiper-slide{
+                max-width: 175px;
+                height: 100%;
+                display: flex;
+                margin: 0 20px;
+            }
+        }
+    }
+}
+
+.container__historico{
+    width: 100%;
+    height: 400px;
+    margin-top: 30px;
+    ion-col{
+        padding: 0;
+    }
+    &_header{
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+        ion-col{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            padding: 10px;
+            ion-title{
+                padding: 0;
+            }
+        }
+        .container__select{
+            height: 80px;
+            display: flex;
+            justify-content: flex-end;
+            .select__sensor{
+                width: 200px;
+            }
+        }
+
+    }
+
+    .container__carrossel_historico{
+        width: 100%;
+        height: 320px;
+        #carrossel__historico{
+            width: 100%;
+            height: 320px;
+            swiper-slide{
+                max-width: 175px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                margin: 0 20px;
+            }
         }
     }
 }

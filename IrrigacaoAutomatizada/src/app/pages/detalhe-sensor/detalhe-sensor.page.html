@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <ion-img src="../../../assets/image/logo.png"></ion-img>
+    <ion-title size="large">Informação do sensor</ion-title>
+    <ion-icon name="chevron-forward-outline" color="light" (click)="navigateToPage()"></ion-icon>
+  </ion-header>
+
+  <ion-row class="container__informacao_sensor">
+    <ion-col size="12" size-sm="6">
+      <p class="nome__sensor">Nome sensor</p>
+      <p class="local__sensor">Local do sensor</p>
+      <p class="descricao__sensor">Descrição do sensor Descrição do sensor Descrição do sensor Descrição do sensor Descrição do sensor Descrição do sensor vDescrição do sensor Descrição do sensor</p>
+    </ion-col>
+    <ion-col size="12" size-sm="6">
+      <ion-button class="btn__editar" color="primary" fill="outline"> Editar Informações</ion-button>
+      <ion-button class="btn__excluir" color="danger" fill="outline"> Excluir Sensor</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row class="container__rotinas">
+    <ion-col>
+      <ion-row class="container__rotinas_header">
+        <ion-col>
+          <ion-title>Rotinas</ion-title>
+        </ion-col>
+        <ion-col>
+          <ion-fab>
+            <ion-fab-button id="open-modal-rotina">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <app-modal-rotina></app-modal-rotina>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-content>

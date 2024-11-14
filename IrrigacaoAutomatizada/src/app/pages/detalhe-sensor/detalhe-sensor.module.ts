@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { DetalheSensorPageRoutingModule } from './detalhe-sensor-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DetalheSensorPage } from './detalhe-sensor.page';
 import { ModalRotinaComponent } from 'src/app/components/modals/modal-rotina/modal-rotina.component';
@@ -15,7 +16,8 @@ import { CardRotinaComponent } from 'src/app/components/card-rotina/card-rotina.
     CommonModule,
     FormsModule,
     IonicModule,
-    DetalheSensorPageRoutingModule
+    DetalheSensorPageRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [DetalheSensorPage, ModalRotinaComponent, CardRotinaComponent]
 })

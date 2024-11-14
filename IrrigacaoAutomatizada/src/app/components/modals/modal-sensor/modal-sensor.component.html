@@ -9,7 +9,7 @@
     </ion-row>
     <ion-row class="container__form">
       <ion-col>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="formSensor" (ngSubmit)="onSubmit()">
           <ion-row class="container__input">
             <ion-col size="12">
               <ion-input 
@@ -29,7 +29,7 @@
             </ion-col>
             <ion-col size="12">
               <ion-textarea 
-              formControlName="descricao" 
+                formControlName="descricao" 
                 label="Descricao" 
                 labelPlacement="floating" 
                 fill="outline" 
@@ -41,7 +41,7 @@
               <ion-button id="btn__cancelar" color="danger">Cancelar</ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button  id="btn__confirmar" color="secondary">Confirmar</ion-button>
+              <ion-button type="ngSubmit" [disabled]="formSensor.invalid" id="btn__confirmar" color="secondary">Confirmar</ion-button>
             </ion-col>
           </ion-row>
         </form>

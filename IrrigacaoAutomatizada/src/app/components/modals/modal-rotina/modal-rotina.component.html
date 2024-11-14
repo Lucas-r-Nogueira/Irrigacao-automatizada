@@ -11,17 +11,17 @@
   
       <ion-row class="container__form">
         <ion-col>
-          <!-- [formGroup]="form" (ngSubmit)="onSubmit()" -->
-          <form >
-            <!--  formControlName="nome" -->
+          <form [formGroup]="formRotina" (ngSubmit)="onSubmit()">
+            <!--   -->
             <ion-row class="container__input_nome">
               <ion-col size="12">
                 <ion-title>Nome Rotina</ion-title>
                 <ion-input 
-                label="Nome Rotina" 
-                label-placement="floating" 
-                fill="outline" 
-                placeholder="Digite o nome da Rotina">
+                  formControlName="nome"
+                  label="Nome Rotina" 
+                  label-placement="floating" 
+                  fill="outline" 
+                  placeholder="Digite o nome da Rotina">
                 </ion-input>  
               </ion-col>
             </ion-row>
@@ -30,7 +30,7 @@
                 <ion-title>Dias da Semana</ion-title>
                 <ion-row class="container__select">
                   <ion-col size="12" size-sm="6">
-                    <ion-select label="Inicio" label-placement="floating" fill="outline">
+                    <ion-select label="Inicio" label-placement="floating" fill="outline" formControlName="diaInicio"> 
                       <ion-select-option value="segunda">Segunda-Feira</ion-select-option>
                       <ion-select-option value="terca-feira">Terca-Feira</ion-select-option>
                       <ion-select-option value="quarta-feira">Quarta-Feira</ion-select-option>
@@ -41,7 +41,7 @@
                     </ion-select>
                   </ion-col>
                   <ion-col size="12" size-sm="6">
-                    <ion-select label="Término" label-placement="floating" fill="outline">
+                    <ion-select label="Término" label-placement="floating" fill="outline" formControlName="diaFim">
                       <ion-select-option value="segunda">Segunda-Feira</ion-select-option>
                       <ion-select-option value="terca-feira">Terca-Feira</ion-select-option>
                       <ion-select-option value="quarta-feira">Quarta-Feira</ion-select-option>
@@ -60,13 +60,13 @@
                   <ion-col size="12" size-sm="6">
                     <ion-title>Inicio</ion-title>
                     <div class="container__timer">
-                      <ion-datetime presentation="time"></ion-datetime>
+                      <ion-datetime presentation="time" formControlName="horarioInicio"></ion-datetime>
                     </div>
                   </ion-col>
                   <ion-col size="12" size-sm="6">
                     <ion-title>Término</ion-title>
                     <div class="container__timer">
-                      <ion-datetime presentation="time"></ion-datetime>
+                      <ion-datetime presentation="time" formControlName="horarioFim"></ion-datetime>
                     </div>
                   </ion-col>
                 </ion-col>
@@ -76,7 +76,7 @@
                 <ion-button id="btn__cancelar" color="danger">Cancelar</ion-button>
               </ion-col>
               <ion-col size="4">
-                <ion-button  id="btn__confirmar" color="secondary">Confirmar</ion-button>
+                <ion-button type="ngSubmit" id="btn__confirmar" color="secondary">Confirmar</ion-button>
               </ion-col>
             </ion-row>
           </form>

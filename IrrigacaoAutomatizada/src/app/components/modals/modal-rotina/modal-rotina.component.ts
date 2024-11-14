@@ -7,24 +7,26 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./modal-rotina.component.scss'],
 })
 export class ModalRotinaComponent  implements OnInit {
-  form: FormGroup;
+  formRotina: FormGroup;
 
   // Construindo o forms
   constructor(private formBuilder: FormBuilder) {
     // Iniciar Forms
-    this.form = new FormGroup({});
+    this.formRotina = new FormGroup({});
   }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
+    this.formRotina = this.formBuilder.group({
       nome: [null], 
-      dia: [null],
-      horario: [null],
+      diaInicio: [null],
+      diaFim: [null],
+      horarioInicio: [null],
+      horarioFim: [null],
     })
   }
   // Método para enviar os dados
   onSubmit(){ 
-    console.log(this.form.value);
+    console.log(this.formRotina.value);
   }
 
 }

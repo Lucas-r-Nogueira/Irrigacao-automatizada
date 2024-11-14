@@ -1,31 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SensorService } from 'src/app/services/sensor.service';  // Importando o serviço
+import { Router } from '@angular/router';  // Para redirecionar após sucesso
 
 @Component({
   selector: 'app-modal-sensor',
   templateUrl: './modal-sensor.component.html',
   styleUrls: ['./modal-sensor.component.scss'],
 })
-export class ModalSensorComponent  implements OnInit {
-  form: FormGroup;
+export class ModalSensorComponent implements OnInit {
+  formSensor: FormGroup;
 
-  // Construindo o forms
-  constructor(private formBuilder: FormBuilder) {
+  // Construindo o forms, configurando a service e o router
+  constructor(
+    private formBuilder: FormBuilder,
+    private sensorService: SensorService,// Serviço para enviar dados à API
+    private router: Router // Roteador para redirecionamento após salvar
+
+  ) {
     // Iniciar Forms
-    this.form = new FormGroup({});
+    this.formSensor = new FormGroup({});
   }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      nome: [null], 
-      local: [null],
+    // Inicializando o formulário com validações
+    this.formSensor = this.formBuilder.group({
+      nome: [null, Validators.required], // Obrigatório 
+      local: [null, Validators.required], // Obrigatório
       descricao: [null],
     })
   }
-  // Método para enviar os dados
-  onSubmit(){ 
-    console.log(this.form.value);
-  }
 
+  // Método para enviar os dados
+  onSubmit() {
+    console.log(this.formSensor.value);
+    if (this.formSensor.invalid) {
+      console.log("Formulário inválido");
+      return;
+    }
+
+    // Chama a service de salvar o sensor
+    this.sensorService.createSensor(this.formSensor.value).subscribe(
+      (response) => {
+        // Mensagem de Success
+        console.log("Sensor criado com sucesso!", response);
+
+        // Router
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        console.error('Erro ao criar sensor', error);
+      }
+    );
+  }
 }

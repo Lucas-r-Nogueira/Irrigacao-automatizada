@@ -7,11 +7,12 @@
 //     CommonModule
 //   ]
 // })
+export interface RotinaModule { 
+  //  Ver BD como está
+  nome : string;
+  dataInicio : string;  
+  dataFim : string;
+  horairoInicio : string;
+  horarioFim: string;
 
-export interface SensorModule {
-  // Ver BD como está
-  // id? : number;
-  nome: string;
-  local: string;
-  descricao: string;
 }

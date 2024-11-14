@@ -7,11 +7,11 @@ import { SensorModule } from '../models/sensor/sensor.module';
   providedIn: 'root'
 })
 export class SensorService {
-  private apiUrl = 'http://localhost:8000/api/sensors'
+  private apiUrl = 'http://localhost:8000/api/sensores'
   constructor(private http: HttpClient) { }
 
   // Método para pegar todos os sensores
-  getSensors() : Observable<SensorModule[]>{
+  getSensores() : Observable<SensorModule[]>{
     return this.http.get<SensorModule[]>(this.apiUrl);
   }
 
@@ -32,7 +32,7 @@ export class SensorService {
 
   // Método para deletar um sensor
   deleteSensor(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   } 
 
 }

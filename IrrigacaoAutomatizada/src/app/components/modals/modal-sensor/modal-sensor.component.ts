@@ -14,7 +14,7 @@ export class ModalSensorComponent implements OnInit {
   // Construindo o forms, configurando a service e o router
   constructor(
     private formBuilder: FormBuilder,
-    private sensorService: SensorService,// Serviço para enviar dados à API
+    private sensorService: SensorService, // Serviço para enviar dados à API
     private router: Router // Roteador para redirecionamento após salvar
 
   ) {
@@ -39,7 +39,7 @@ export class ModalSensorComponent implements OnInit {
       return;
     }
 
-    // Chama a service de salvar o sensor
+    // Chama a service de criar o sensor
     this.sensorService.createSensor(this.formSensor.value).subscribe(
       (response) => {
         // Mensagem de Success

@@ -16,6 +16,16 @@
       <ion-button class="btn__excluir" color="danger" fill="outline"> Excluir Sensor</ion-button>
     </ion-col>
   </ion-row>
+
+  <ion-row class="container__umidade">
+    <ion-col size="12" size-sm="6">
+      <p class="title">Umidade( % )</p>
+      <p class="umidade">20%</p>
+    </ion-col>
+    <ion-col size="12" size-sm="6">
+      <p class="text">O número ao lado representa a umidade do solo, indicando a quantidade de água presente na terra. Esse valor ajuda a entender o nível de umidade, que é essencial para o crescimento das plantas e para a saúde do solo.</p>
+    </ion-col>
+  </ion-row>
   <ion-row class="container__rotinas">
     <ion-col>
       <ion-row class="container__rotinas_header">
@@ -31,6 +41,19 @@
           <app-modal-rotina></app-modal-rotina>
         </ion-col>
       </ion-row>
+      <ion-content>
+        <ion-row class="container__cards_rotina">
+          <ion-col size-md="auto" sizeSm="6" size-lg="3">
+              <app-card-rotina></app-card-rotina>
+          </ion-col>
+          <ion-col size-md="auto" sizeSm="6"  size-lg="3">
+              <app-card-rotina></app-card-rotina>
+          </ion-col>
+          <ion-col size-md="auto" sizeSm="6"  size-lg="3">
+              <app-card-rotina></app-card-rotina>
+          </ion-col>
+        </ion-row>
+      </ion-content>
     </ion-col>
   </ion-row>
 </ion-content>

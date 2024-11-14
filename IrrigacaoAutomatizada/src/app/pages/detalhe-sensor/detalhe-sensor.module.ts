@@ -8,6 +8,7 @@ import { DetalheSensorPageRoutingModule } from './detalhe-sensor-routing.module'
 
 import { DetalheSensorPage } from './detalhe-sensor.page';
 import { ModalRotinaComponent } from 'src/app/components/modals/modal-rotina/modal-rotina.component';
+import { CardRotinaComponent } from 'src/app/components/card-rotina/card-rotina.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { ModalRotinaComponent } from 'src/app/components/modals/modal-rotina/mod
     IonicModule,
     DetalheSensorPageRoutingModule
   ],
-  declarations: [DetalheSensorPage, ModalRotinaComponent]
+  declarations: [DetalheSensorPage, ModalRotinaComponent, CardRotinaComponent]
 })
 export class DetalheSensorPageModule {}

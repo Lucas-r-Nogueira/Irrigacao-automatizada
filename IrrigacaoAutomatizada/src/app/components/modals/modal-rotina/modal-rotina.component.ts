@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RotinaModule } from 'src/app/models/rotina/rotina.module';
-import { Router } from '@angular/router';
+// import { RotinaModule } from 'src/app/models/rotina/rotina.module';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-rotina',
@@ -14,8 +14,8 @@ export class ModalRotinaComponent  implements OnInit {
   // Construindo o forms
   constructor(
     private formBuilder: FormBuilder,
-    private rotinaService: RotinaModule,
-    private router: Router
+    // private rotinaService: RotinaModule,
+    // private router: Router
   ) {
     // Iniciar Forms
     this.formRotina = new FormGroup({});

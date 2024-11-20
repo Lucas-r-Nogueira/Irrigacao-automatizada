@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { Sensores } from 'src/app/core/interface/Sensores';
+import { SensorService } from 'src/app/core/service/sensor.service';
 
 @Component({
   selector: 'app-card-sensor',
@@ -6,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-sensor.component.scss'],
 })
 export class CardSensorComponent  implements OnInit {
+  @Input() sensor!: Sensores;
 
-  constructor() { }
+  constructor(private sensorService: SensorService) { }
 
   ngOnInit() {}
-
 }

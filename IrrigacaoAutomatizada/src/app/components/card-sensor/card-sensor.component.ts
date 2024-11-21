@@ -1,6 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Sensores } from 'src/app/core/interface/Sensores';
-import { SensorService } from 'src/app/core/service/sensor.service';
 
 @Component({
   selector: 'app-card-sensor',
@@ -10,7 +9,7 @@ import { SensorService } from 'src/app/core/service/sensor.service';
 export class CardSensorComponent  implements OnInit {
   @Input() sensor!: Sensores;
 
-  constructor(private sensorService: SensorService) { }
+  constructor() { }
 
   ngOnInit() {}
 }

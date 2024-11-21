@@ -7,22 +7,26 @@ import { Sensores } from '../interface/Sensores';
   providedIn: 'root'
 })
 export class SensorService {
-  private apiUrl = 'http://localhost:8000/api/sensors'; // URL da API Laravel
+  private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {
+    console.log("URL requisitada:", this.apiUrl);
+   }
+   
+   // Método para buscar todos os sensores
+   ListarSensores (): Observable<any>{
+     return this.http.get<any>(`${this.apiUrl}`);
+   }
 
   // Método para criar um sensor
-  createSensor(Sensores: Sensores): Observable<Sensores> {
-    return this.http.post<Sensores>(this.apiUrl, Sensores);
-  }
-
-  // Método para buscar todos os sensores
-  getSensors(): Observable<Sensores[]> {
-    return this.http.get<Sensores[]>(this.apiUrl);
+  criarSensor(sensor: Sensores): Observable<Sensores> {
+    console.log('Dados enviados para criação:', sensor);
+    return this.http.post<Sensores>(this.apiUrl, sensor);
   }
 
   // Método para deletar um sensor
   deleteSensor(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/sensors/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/sensor/${id}`);
   }
 }

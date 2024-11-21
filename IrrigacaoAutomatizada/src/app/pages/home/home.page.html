@@ -23,8 +23,8 @@
       <ion-row class="container__carrossel_sensores">
         <ion-col>
           <swiper-container loop="true" navigation="false" id="carrossel__sensor" grabCursor="true" centeredSlides="false">
-            <swiper-slide *ngFor="let sensor of sensors">
-              <app-card-sensor [sensores]="sensores"></app-card-sensor>
+            <swiper-slide *ngFor="let sensor of dados">
+              <app-card-sensor [sensores]="sensor"></app-card-sensor>
             </swiper-slide>
           </swiper-container>
         </ion-col>

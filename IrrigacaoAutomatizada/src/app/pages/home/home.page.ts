@@ -8,19 +8,19 @@ import { SensorService } from 'src/app/core/service/sensor.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  sensors: Sensores[] = [];
-
+  // sensors: Sensores[] = [];
+  dados: any;
   constructor(private sensorService: SensorService) { }
 
-  ngOnInit(): void {
-    this.loadSensors(); // Carrega os sensores ao abrir a página
-  }
+  ngOnInit(){
+    this.sensorService.ListarSensores().subscribe(
+      (response) => {
+        this.dados = response;
+        console.log(this.dados);
 
-  loadSensors(): void {
-    this.sensorService.getSensors().subscribe({
-      next: (data) => (this.sensors = data),
-      error: (err) => console.error('Erro ao carregar sensores:', err),
-    });
+      },
+      (error) => {console.error("ERRO: ", error);}
+    )
   }
 
 }

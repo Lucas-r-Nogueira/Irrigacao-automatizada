@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
     dirname(__DIR__)
@@ -22,9 +22,9 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
+$app->setLocale(env('APP_LOCALE', 'pt_BR'));
 
 $app->withFacades();
-
 $app->withEloquent();
 
 /*
@@ -58,7 +58,8 @@ $app->singleton(
 | the default version. You may register other files below as needed.
 |
 */
-
+$app->configure('auth');
+$app->configure('cors');
 $app->configure('app');
 
 /*
@@ -72,9 +73,11 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    Illuminate\Http\Middleware\HandleCors::class
+    // \Barryvdh\Cors\HandleCors::class,
+]);
+
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
@@ -91,9 +94,14 @@ $app->configure('app');
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
+$app->register(Laravel\Tinker\TinkerServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
+// $app->register(Barryvdh\Cors\ServiceProvider::class);
+// $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+// $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

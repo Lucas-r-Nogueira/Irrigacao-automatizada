@@ -10,5 +10,3 @@ return [
     'supports_credentials' => true,
     'content_type' => ['application/json']
 ];
-
-?>

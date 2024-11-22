@@ -7,13 +7,13 @@ import { Sensores } from '../interface/Sensores';
   providedIn: 'root'
 })
 export class SensorService {
-  private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
+  private apiUrl: string = 'http://localhost:8000/sensor'; // URL da API Lumen codespace (ramalho)
 
 
   constructor(private http: HttpClient) {
     console.log("URL requisitada:", this.apiUrl);
    }
-   
+
    // Método para buscar todos os sensores
    ListarSensores (): Observable<any>{
      return this.http.get<any>(`${this.apiUrl}`);

@@ -74,8 +74,7 @@ $app->configure('app');
 */
 
 $app->middleware([
-    Illuminate\Http\Middleware\HandleCors::class
-    // \Barryvdh\Cors\HandleCors::class,
+    \Illuminate\Http\Middleware\HandleCors::class,
 ]);
 
 
@@ -98,10 +97,6 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Laravel\Tinker\TinkerServiceProvider::class);
-$app->register(Fruitcake\Cors\CorsServiceProvider::class);
-// $app->register(Barryvdh\Cors\ServiceProvider::class);
-// $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-// $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

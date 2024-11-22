@@ -29,12 +29,7 @@ class SensorController extends Controller
 
     public function index()
     {
-        $sensors = Sensor::all();
-
-        if(!$sensors)
-            return response()->json(['error' => 'Não há sensores cadastrados'], 404);
-
-        return response()->json($sensors, 200);
+        return response()->json([], 200);
     }
 
     public function show($id)
@@ -72,10 +67,10 @@ class SensorController extends Controller
         return response()->json($sensor, 201);
 
     }
-    
+
     public function update(Request $request)
     {
-        
+
         $regras = [
             'id' => ['required', 'integer', 'min:0'],
             'nome' => ['nullable', 'string', 'max:255'],

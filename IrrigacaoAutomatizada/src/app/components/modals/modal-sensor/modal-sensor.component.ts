@@ -48,7 +48,7 @@ export class ModalSensorComponent implements OnInit {
         console.log("Sensor criado com sucesso!", response);
 
         // Router
-        // this.router.navigate(['/home']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Erro ao criar sensor', error);

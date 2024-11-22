@@ -13,19 +13,25 @@ export class SensorService {
     console.log("URL requisitada:", this.apiUrl);
    }
 
-   // Método para buscar todos os sensores
-   ListarSensores (): Observable<any>{
-     return this.http.get<any>(`${this.apiUrl}`);
-   }
+  // Método para buscar todos os sensores
+  ListarSensores (): Observable<Sensores[]>{
+   return this.http.get<any>(`${this.apiUrl}`);
+  }
 
-  // Método para criar um sensor
+  // Consultar sensor específico
+  PegarSensor (id: number): Observable<Sensores> {
+    console.log("Dados do sensor");
+    return this.http.get<Sensores>(`${this.apiUrl}/${id}/`);
+  }
+
+  // Método para criar um sensor(Funcionando)
   criarSensor(sensor: Sensores): Observable<Sensores> {
     console.log('Dados enviados para criação:', sensor);
     return this.http.post<Sensores>(`${this.apiUrl}/adicionar/`, sensor);
   }
 
   // Método para deletar um sensor
-  deleteSensor(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteSensor(id: number): Observable<Sensores> {
+    return this.http.delete<Sensores>(`${this.apiUrl}/${id}`);
   }
 }

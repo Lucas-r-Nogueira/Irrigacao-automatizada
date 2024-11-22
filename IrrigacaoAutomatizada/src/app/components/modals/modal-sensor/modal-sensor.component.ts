@@ -29,6 +29,7 @@ export class ModalSensorComponent implements OnInit {
       nome: [null, Validators.required], // Obrigatório 
       local: [null, Validators.required], // Obrigatório
       descricao: [null],
+      ultima_leitura:  [0],
     })
   }
 
@@ -47,7 +48,7 @@ export class ModalSensorComponent implements OnInit {
         console.log("Sensor criado com sucesso!", response);
 
         // Router
-        this.router.navigate(['/home']);
+        // this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Erro ao criar sensor', error);

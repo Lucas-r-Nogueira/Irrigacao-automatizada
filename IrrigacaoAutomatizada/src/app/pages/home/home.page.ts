@@ -8,15 +8,14 @@ import { SensorService } from 'src/app/core/service/sensor.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  // sensors: Sensores[] = [];
-  dados: any;
+  sensores: Sensores[] = [];
   constructor(private sensorService: SensorService) { }
 
   ngOnInit(){
     this.sensorService.ListarSensores().subscribe(
       (response) => {
-        this.dados = response;
-        console.log(this.dados);
+        this.sensores = response;
+        console.log("Lista de sensores",this.sensores);
 
       },
       (error) => {console.error("ERRO: ", error);}

@@ -29,7 +29,8 @@ class SensorController extends Controller
 
     public function index()
     {
-        return response()->json([], 200);
+        $sensors = Sensor::all();
+        return response()->json($sensors, 200);
     }
 
     public function show($id)

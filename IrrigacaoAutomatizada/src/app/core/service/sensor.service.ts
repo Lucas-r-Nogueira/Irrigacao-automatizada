@@ -7,7 +7,8 @@ import { Sensores } from '../interface/Sensores';
   providedIn: 'root'
 })
 export class SensorService {
-  private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
+  private apiUrl: string = 'https://literate-space-engine-g99766vvgrrhwg4p-8000.app.github.dev/sensor'; // URL da API Lumen codespace (Daniel)
+  // private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
 
   constructor(private http: HttpClient) {
     console.log("URL requisitada:", this.apiUrl);

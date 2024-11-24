@@ -1,4 +1,5 @@
 export interface Sensores {
+    id: number;
     nome: string;
     local: string;
     descricao: string;

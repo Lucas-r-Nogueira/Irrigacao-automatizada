@@ -11,7 +11,7 @@
       <p class="descricao__sensor">{{ sensor.descricao }}</p>
     </ion-col>
     <ion-col size="12" size-sm="6">
-      <ion-button class="btn__editar" color="primary" fill="outline"> Editar Informações</ion-button>
+      <ion-button class="btn__editar" color="primary" fill="outline" id="open-modal-sensor"> Editar Informações</ion-button>
       <ion-button class="btn__excluir" color="danger" fill="outline" (click)="deleteSensor()"> Excluir Sensor</ion-button>
     </ion-col>
   </ion-row>
@@ -33,11 +33,10 @@
         </ion-col>
         <ion-col>
           <ion-fab>
-            <ion-fab-button id="open-modal-rotina">
+            <ion-fab-button  id="open-modal-rotina">
               <ion-icon name="add"></ion-icon>
             </ion-fab-button>
           </ion-fab>
-          <app-modal-rotina [sensorId] = "'sensor.id'"></app-modal-rotina>
         </ion-col>
       </ion-row>
       <ion-content>
@@ -52,6 +51,7 @@
           </ion-col>
         </ion-row>
       </ion-content>
+      <app-modal-rotina  [sensorId]="sensorId"></app-modal-rotina>
     </ion-col>
   </ion-row>
 </ion-content>

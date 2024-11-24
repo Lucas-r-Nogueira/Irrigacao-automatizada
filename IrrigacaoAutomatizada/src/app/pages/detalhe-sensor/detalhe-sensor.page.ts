@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { RotinaService } from 'src/app/core/service/rotina.service';
 import { SensorService } from 'src/app/core/service/sensor.service';
 
 @Component({
@@ -13,7 +15,12 @@ export class DetalheSensorPage implements OnInit {
   sensor: any;
   sensorId!: number;
 
-  constructor( private Activaterouter: ActivatedRoute, private router: Router, private sensorService: SensorService) { }
+  constructor( 
+    private Activaterouter: ActivatedRoute, 
+    private router: Router, 
+    private sensorService: SensorService,
+    private rotinaService: RotinaService,
+  ) { }
 
   ngOnInit(): void {
     // Pega o parâmetro de rota 'id'
@@ -32,6 +39,7 @@ export class DetalheSensorPage implements OnInit {
         console.error("Erro ao exibir sensor: ", error);
       }
     )
+    this.carregarRotinas(); // Carregar as rotinas ao inicializar
   }
 
   deleteSensor(): void {
@@ -46,6 +54,17 @@ export class DetalheSensorPage implements OnInit {
       );
   }
 
+  carregarRotinas() {
+    this.rotinaService.listarRotinasPorSensor(this.sensorId).subscribe(
+      (data) => {
+        this.rotinas = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar rotinas:', error);
+      }
+    );
+  }
+
   navigateToPage() {
     this.router.navigate(['/home']);
   }
@@ -58,6 +77,5 @@ export class DetalheSensorPage implements OnInit {
       console.error('sensorId inválido');
     }
   }
-
 
 }

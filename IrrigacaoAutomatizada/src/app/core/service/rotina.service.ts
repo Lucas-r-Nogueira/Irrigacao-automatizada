@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable,map } from 'rxjs';
 import { Rotinas } from '../interface/Rotina';
 
 @Injectable({
@@ -25,10 +25,12 @@ export class RotinaService {
   }
 
   // Método listar Rotinas
-  listarTodasRotinas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+  listarRotinasPorSensor(sensorId: number) {
+    return this.http.get<any>(`https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor/${sensorId}/rotinas`).pipe(
+      map(sensor => sensor.routines) // Acessa o atributo 'routines' do sensor
+    );
   }
-
+  
 
   // Método para editar (atualizar) uma rotina
   editarRotina(id: number, dadosAtualizados: any): Observable<any> {

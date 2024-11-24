@@ -3,6 +3,8 @@ export interface Rotinas {
     id_sensor: number,
     nome: string,
     dias_de_ativacao: string,
-    horario_de_inicio: string,
-    duracao: number,
+    diaInicio: string,
+    diaFim: string,
+    horarioInicio: string,
+    horarioFim: string,
 }

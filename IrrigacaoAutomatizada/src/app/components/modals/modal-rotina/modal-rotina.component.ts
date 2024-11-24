@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RotinaService } from 'src/app/core/service/rotina.service';
+import { ModalController } from '@ionic/angular';  // Importando o ModalController
 
 @Component({
   selector: 'app-modal-rotina',
@@ -10,14 +11,12 @@ import { RotinaService } from 'src/app/core/service/rotina.service';
 })
 export class ModalRotinaComponent  implements OnInit {
   formRotina: FormGroup;
-  @Input() sensorId! : string;
+  @Input() sensorId! : number;
 
   // Construindo o forms
   constructor(
     private formBuilder: FormBuilder,
     private rotinaService: RotinaService,
-    private router: Router,
-
   ) {
     // Iniciar Forms
     this.formRotina = new FormGroup({});
@@ -26,13 +25,12 @@ export class ModalRotinaComponent  implements OnInit {
   ngOnInit() {
     // Validações
     this.formRotina = this.formBuilder.group({
-      id_sensor: this.sensorId,
+      id_sensor: [this.sensorId, Validators.required],
       nome: [null, Validators.required], 
       diaInicio: [null, Validators.required],
       diaFim: [null, Validators.required],
-      horarioinicio: [null],  // Agora é obrigatório
-      horariofim: [null],
-      duracao: [null], // Agora é obrigatório
+      horarioInicio: [null], 
+      horarioFim: [null],
     })
   }
   // Método para enviar os dados
@@ -52,7 +50,6 @@ export class ModalRotinaComponent  implements OnInit {
         console.error("Erro ao criar rotina:", error);
       }
     );    
-    
   }
 
 }

@@ -18,7 +18,7 @@ class Sensors extends Migration
             $table->string('nome', 50);
             $table->string('local', 100);
             $table->text('descricao')->nullable();
-            $table->decimal('ultima_leitura', 5, 2);
+            $table->decimal('ultima_leitura', 5, 2)->default(0.00);
             $table->timestamps();
 
         });

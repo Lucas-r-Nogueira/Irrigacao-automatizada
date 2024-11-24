@@ -25,7 +25,7 @@ class RoutineSeeder extends Seeder
             'nome' => 'Rotina 1',
             'dias_de_ativacao' => 'MTWTF__', // Exemplo de ativação em dias da semana
             'horario_de_inicio' => '08:00:00',
-            'duracao' => 60,
+            'horario_de_termino' => '09:00:00',
             'id_sensor' => $sensor_ids[array_rand($sensor_ids)]
         ]);
 
@@ -33,7 +33,7 @@ class RoutineSeeder extends Seeder
             'nome' => 'Rotina 2',
             'dias_de_ativacao' => 'MTWTFSS', // Exemplo de todos os dias
             'horario_de_inicio' => '09:00:00',
-            'duracao' => 90,
+            'horario_de_termino' => '09:30:00',
             'id_sensor' => $sensor_ids[array_rand($sensor_ids)]
         ]);
 
@@ -41,7 +41,7 @@ class RoutineSeeder extends Seeder
             'nome' => 'Rotina 3',
             'dias_de_ativacao' => '______S', // Exemplo de fim de semana
             'horario_de_inicio' => '10:30:00',
-            'duracao' => 120,
+            'horario_de_termino' => '11:00:00',
             'id_sensor' => $sensor_ids[array_rand($sensor_ids)]
         ]);
 }

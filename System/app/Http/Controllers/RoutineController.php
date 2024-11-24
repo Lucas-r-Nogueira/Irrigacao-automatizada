@@ -41,7 +41,7 @@ class RoutineController extends Controller
             'nome' => ['required', 'string', 'max:255'],
             'dias_de_ativacao' => ['nullable', 'string', 'size:7', 'regex:/^[01]+$/'],
             'horario_de_inicio' => ['required', 'date_format:H:i:s'],
-            'duracao' => ['required', 'integer', 'min:0'],
+            'horario_de_termino' => ['required', 'date_format:H:i:s'],
             'id_sensor' => ['required', 'integer', 'min:0']
         ];
 
@@ -54,7 +54,7 @@ class RoutineController extends Controller
             'nome' => $request->input('nome'),
             'dias_de_ativacao' => $request->input('dias_de_ativacao'),
             'horario_de_inicio' => $request->input('horario_de_inicio'),
-            'duracao' => $request->input('duracao'),
+            'horario_de_termino' => $request->input('horario_de_termino'),
             'id_sensor' => $request->input('id_sensor')
         ]);
 
@@ -68,7 +68,7 @@ class RoutineController extends Controller
             'nome' => ['nullable', 'string', 'max:255'],
             'dias_de_ativacao' => ['nullable', 'string', 'size:7', 'regex:/^[01]+$/'],
             'horario_de_inicio' => ['nullable', 'date_format:H:i:s'],
-            'duracao' => ['nullable', 'integer', 'min:0'],
+            'horario_de_termino' => ['required', 'date_format:H:i:s'],
             'id_sensor' => ['nullable', 'integer', 'min:0']
         ];
 
@@ -81,7 +81,7 @@ class RoutineController extends Controller
         if(!$routine)
             return response()->json(['error' => 'Rotina não encontrada'], 404);
 
-        $atributos = ['nome', 'dias_de_ativacao', 'horario_de_inicio', 'duracao', 'id_sensor'];
+        $atributos = ['nome', 'dias_de_ativacao', 'horario_de_inicio', 'horario_de_termino', 'id_sensor'];
 
         foreach ($atributos as $atributo) {
             $request->input($atributo) !== null

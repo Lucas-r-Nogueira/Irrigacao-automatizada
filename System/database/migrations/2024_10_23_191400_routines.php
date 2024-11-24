@@ -18,7 +18,7 @@ class Routines extends Migration
             $table->string('nome', 50);
             $table->char('dias_de_ativacao', 7)->nullable();
             $table->time('horario_de_inicio');
-            $table->integer('duracao');
+            $table->time('horario_de_termino');
             $table->unsignedBigInteger('id_sensor');
             $table->timestamps();
 

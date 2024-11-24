@@ -50,7 +50,7 @@ class SensorController extends Controller
             'nome' => ['required', 'string', 'max:50'],
             'local' => ['required', 'string', 'max:100'],
             'descricao' => ['nullable', 'string'],
-            'ultima_leitura' => ['required', 'numeric', 'min:0']
+            'ultima_leitura' => ['numeric', 'min:0']
         ];
 
         $validacao = Validator::make($request->all(), $regras);
@@ -62,7 +62,7 @@ class SensorController extends Controller
             'nome' => $request->input('nome'),
             'local' => $request->input('local'),
             'descricao' => $request->input('descricao'),
-            'ultima_leitura' => $request->input('ultima_leitura'),
+            'ultima_leitura' => $request->input('ultima_leitura', 0.00),
         ]);
 
         return response()->json($sensor, 201);

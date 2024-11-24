@@ -6,20 +6,20 @@
   </ion-header>
   <ion-row class="container__informacao_sensor">
     <ion-col size="12" size-sm="6">
-      <p class="nome__sensor">Nome sensor</p>
-      <p class="local__sensor">Local do sensor</p>
-      <p class="descricao__sensor">Descrição do sensor Descrição do sensor Descrição do sensor Descrição do sensor Descrição do sensor Descrição do sensor vDescrição do sensor Descrição do sensor</p>
+      <p class="nome__sensor">{{ sensor.nome}}</p>
+      <p class="local__sensor">{{ sensor.local }}</p>
+      <p class="descricao__sensor">{{ sensor.descricao }}</p>
     </ion-col>
     <ion-col size="12" size-sm="6">
       <ion-button class="btn__editar" color="primary" fill="outline"> Editar Informações</ion-button>
-      <ion-button class="btn__excluir" color="danger" fill="outline"> Excluir Sensor</ion-button>
+      <ion-button class="btn__excluir" color="danger" fill="outline" (click)="deleteSensor()"> Excluir Sensor</ion-button>
     </ion-col>
   </ion-row>
 
   <ion-row class="container__umidade">
     <ion-col size="12" size-sm="6">
       <p class="title">Umidade( % )</p>
-      <p class="umidade">20%</p>
+      <p class="umidade">{{ sensor.ultima_leitura}}%</p>
     </ion-col>
     <ion-col size="12" size-sm="6">
       <p class="text">O valor à cima representa a umidade do solo, indicando a porcentagem de umidade presente na terra. Esse valor ajuda a entender o nível de umidade, que é essencial para o crescimento das plantas e para a saúde do solo.</p>
@@ -37,18 +37,18 @@
               <ion-icon name="add"></ion-icon>
             </ion-fab-button>
           </ion-fab>
-          <app-modal-rotina></app-modal-rotina>
+          <app-modal-rotina [sensorId] = "'sensor.id'"></app-modal-rotina>
         </ion-col>
       </ion-row>
       <ion-content>
         <ion-row class="container__cards_rotina">
           <ion-col     
-            *ngFor="let rotina of rotinas"
-            size-md="auto"
-            sizeSm="6"
-            size-lg="3"
+          *ngFor="let rotina of rotinas"
+          size-md="auto"
+          sizeSm="6"
+          size-lg="3"
             >
-              <app-card-rotina  [data]="rotina"></app-card-rotina>
+              <app-card-rotina [data]="rotina"></app-card-rotina>
           </ion-col>
         </ion-row>
       </ion-content>

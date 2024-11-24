@@ -15,16 +15,16 @@
               <ion-icon name="add"></ion-icon>
             </ion-fab-button>
               <!-- Modal Acionar Sensor -->
-              <app-modal-sensor></app-modal-sensor>
+              <app-modal-sensor (sensorCriado)="onSensorCriado()"></app-modal-sensor>
           </ion-fab>
         </ion-col>
       </ion-row>
 
       <ion-row class="container__carrossel_sensores">
         <ion-col>
-          <swiper-container loop="true" navigation="false" id="carrossel__sensor" grabCursor="true" centeredSlides="false">
+          <swiper-container loop="false" navigation="false" id="carrossel__sensor" grabCursor="true" centeredSlides="false">
             <swiper-slide *ngFor="let sensor of sensores">
-              <app-card-sensor [sensores]="sensor"></app-card-sensor>
+              <app-card-sensor [data]="sensor"></app-card-sensor>
             </swiper-slide>
           </swiper-container>
         </ion-col>
@@ -49,7 +49,7 @@
 
       <ion-row class="container__carrossel_historico">
         <ion-col>
-          <swiper-container loop="true" navigation="false" id="carrossel__historico" grabCursor="true" centeredSlides="false">
+          <swiper-container loop="false" navigation="false" id="carrossel__historico" grabCursor="true" centeredSlides="false">
             <swiper-slide>
               <app-card-historico></app-card-historico>
             </swiper-slide>

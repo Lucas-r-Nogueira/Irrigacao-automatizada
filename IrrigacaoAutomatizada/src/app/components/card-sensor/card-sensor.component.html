@@ -1,14 +1,14 @@
 <div class="card">
   <div class="container__umidade">
-    <p>{{ sensor.ultima_leitura}}</p>
+    <p>{{ data.ultima_leitura}}</p>
   </div>
   <div class="container__title">
-    <p>{{ sensor.nome }}</p>
+    <p>{{ data.nome }}</p>
   </div>
   <div class="container__desc">
-    <p>{{ sensor.descricao }}</p>
+    <p>{{ data.descricao }}</p>
   </div>
   <div class="container__btn_detalhe">
-    <button>Detalhe</button>
+    <button (click)="goToDetail(data.id)">Detalhe</button>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { Sensores } from 'src/app/core/interface/Sensores';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-sensor',
@@ -7,9 +7,18 @@ import { Sensores } from 'src/app/core/interface/Sensores';
   styleUrls: ['./card-sensor.component.scss'],
 })
 export class CardSensorComponent  implements OnInit {
-  @Input() sensor!: Sensores;
+  @Input() data: any; // Recebe dados de um sensor
 
-  constructor() { }
+  constructor(
+    private router : Router,
+  ) { }
 
   ngOnInit() {}
+
+  
+  goToDetail(id: number) {  
+    console.log("Id sensor: ", id);
+    this.router.navigate(['/detalhe-sensor/', id]);
+  }
+
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Sensores } from 'src/app/core/interface/Sensores';
 import { SensorService } from 'src/app/core/service/sensor.service';
 
 @Component({
@@ -8,20 +7,45 @@ import { SensorService } from 'src/app/core/service/sensor.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  sensores: Sensores[] = [];
-  
+  sensores: any[] = []; // Variável para armazenar os sensores
+
   constructor(private dadosSensor: SensorService) { }
 
-  ngOnInit(){
-    this.dadosSensor.ListarSensores().subscribe(
-      (response) => {
-        this.sensores = response;
-        console.log("Lista de sensores",this.sensores);
+  ngOnInit(): void {
+    this.fetchSensores();
+    this.carregarSensores();
 
-      },
-      (error) => {console.error("ERRO: ", error);}
-    )
+    // Se inscreve para escutar a exclusão de sensor e atualizar a lista
+    this.dadosSensor.onSensorDeleted().subscribe(() => {
+      this.carregarSensores();
+    });
   }
-  
+
+  fetchSensores(): void {
+    this.dadosSensor.ListarSensores().subscribe(
+      (data) => {
+        this.sensores = data;
+      },
+      (error) => {
+        console.error("Erro ao buscar sensores: ", error);
+      }
+    );
+  }
+
+  carregarSensores() {
+    this.dadosSensor.ListarSensores().subscribe(
+      (data) => {
+        this.sensores = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar sensores', error);
+      }
+    );
+  }
+
+  // Método chamado quando um sensor é criado
+  onSensorCriado() {
+    this.fetchSensores(); // Atualiza a lista de sensores
+  }
 
 }

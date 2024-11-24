@@ -45,3 +45,4 @@ class RoutineSeeder extends Seeder
             'id_sensor' => $sensor_ids[array_rand($sensor_ids)]
         ]);
 }
+}

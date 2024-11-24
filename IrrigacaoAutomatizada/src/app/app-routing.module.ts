@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
   },
   {
-    path: 'detalhe-sensor',
+    path: 'detalhe-sensor/:id',
     loadChildren: () => import('./pages/detalhe-sensor/detalhe-sensor.module').then( m => m.DetalheSensorPageModule)
   },
 ];

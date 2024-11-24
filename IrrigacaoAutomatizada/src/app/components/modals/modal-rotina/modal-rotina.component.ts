@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RotinaService } from 'src/app/core/service/rotina.service';
-
 
 @Component({
   selector: 'app-modal-rotina',
@@ -11,6 +10,7 @@ import { RotinaService } from 'src/app/core/service/rotina.service';
 })
 export class ModalRotinaComponent  implements OnInit {
   formRotina: FormGroup;
+  @Input() sensorId! : string;
 
   // Construindo o forms
   constructor(
@@ -26,6 +26,7 @@ export class ModalRotinaComponent  implements OnInit {
   ngOnInit() {
     // Validações
     this.formRotina = this.formBuilder.group({
+      id_sensor: this.sensorId,
       nome: [null, Validators.required], 
       diaInicio: [null, Validators.required],
       diaFim: [null, Validators.required],

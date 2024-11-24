@@ -12,7 +12,6 @@ export class CardRotinaComponent  implements OnInit {
 
   constructor(
     private rotina : RotinaService,
-    private router: Router,
   ) { }
 
   ngOnInit() {}

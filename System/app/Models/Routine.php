@@ -11,7 +11,7 @@ class Routine extends Model
         'nome',
         'dias_de_ativacao',
         'horario_de_inicio',
-        'duracao',
+        'horario_de_termino',
         'id_sensor'
     ];
 

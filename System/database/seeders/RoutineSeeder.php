@@ -44,5 +44,4 @@ class RoutineSeeder extends Seeder
             'duracao' => 120,
             'id_sensor' => $sensor_ids[array_rand($sensor_ids)]
         ]);
-    }
 }

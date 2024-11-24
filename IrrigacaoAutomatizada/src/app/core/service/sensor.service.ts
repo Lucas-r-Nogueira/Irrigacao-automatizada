@@ -10,11 +10,17 @@ export class SensorService {
   private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
 
   constructor(private http: HttpClient) {
-    console.log("URL requisitada:", this.apiUrl);
+    console.log("URL requisitada(Sensor):", this.apiUrl);
    }
 
+  // Método para criar um sensor(Funcionando)
+  criarSensor(sensor: Sensores): Observable<Sensores> {
+    console.log('Dados enviados para criação(Sensor):', sensor);
+    return this.http.post<Sensores>(`${this.apiUrl}/adicionar/`, sensor);
+  }
+
   // Método para buscar todos os sensores
-  ListarSensores (): Observable<Sensores[]>{
+  ListarSensores (): Observable<any>{
    return this.http.get<any>(`${this.apiUrl}`);
   }
 
@@ -22,12 +28,6 @@ export class SensorService {
   PegarSensor (id: number): Observable<Sensores> {
     console.log("Dados do sensor");
     return this.http.get<Sensores>(`${this.apiUrl}/${id}/`);
-  }
-
-  // Método para criar um sensor(Funcionando)
-  criarSensor(sensor: Sensores): Observable<Sensores> {
-    console.log('Dados enviados para criação:', sensor);
-    return this.http.post<Sensores>(`${this.apiUrl}/adicionar/`, sensor);
   }
 
   // Método para deletar um sensor

@@ -8,6 +8,7 @@ import { Rotinas } from '../interface/Rotina';
 })
 export class RotinaService {
   private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/rotina'
+  private apiUrlsensor: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'
 
   constructor(private http: HttpClient) {
     console.log("URL requisitada(Rotina):", this.apiUrl);
@@ -26,7 +27,7 @@ export class RotinaService {
 
   // Método listar Rotinas
   listarRotinasPorSensor(sensorId: number) {
-    return this.http.get<any>(`https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor/${sensorId}/rotinas`).pipe(
+    return this.http.get<any>(`${this.apiUrlsensor}/${sensorId}/rotinas`).pipe(
       map(sensor => sensor.routines) // Acessa o atributo 'routines' do sensor
     );
   }
@@ -35,7 +36,5 @@ export class RotinaService {
   // Método para editar (atualizar) uma rotina
   editarRotina(id: number, dadosAtualizados: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/editar/${id}`, dadosAtualizados);
-    // Use PATCH se for atualizar parcialmente:
-    // return this.http.patch<any>(`${this.apiUrl}/${id}`, dadosAtualizados);
   }
 }

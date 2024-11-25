@@ -33,8 +33,13 @@ ion-modal {
 
   .container__buttons{
     height: 25%;
-
+    ion-col{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     ion-button {
+      margin: 0 auto;
       --text-color: #ffff; 
     }
   }

@@ -36,7 +36,7 @@ ion-modal {
 
     .container__input_dia{
         width: 100%;
-        height: 200px;
+        height: 150px;
         padding: 20px;
         .container__select{
             ion-col{
@@ -45,6 +45,10 @@ ion-modal {
         }
         ion-title{
             margin-bottom: 10px;
+        }
+        ion-item{
+            border: 1px solid rgb(177, 177, 177);
+            --border-radius: 8px;
         }
     }
 

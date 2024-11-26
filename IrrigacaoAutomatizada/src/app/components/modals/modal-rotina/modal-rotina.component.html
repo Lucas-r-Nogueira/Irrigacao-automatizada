@@ -29,27 +29,19 @@
               <ion-col size="12" >
                 <ion-title>Dias da Semana</ion-title>
                 <ion-row class="container__select">
-                  <ion-col size="12" size-sm="6">
-                    <ion-select label="Inicio" label-placement="floating" fill="outline" formControlName="diaInicio"> 
-                      <ion-select-option value="segunda">Segunda-Feira</ion-select-option>
-                      <ion-select-option value="terca-feira">Terca-Feira</ion-select-option>
-                      <ion-select-option value="quarta-feira">Quarta-Feira</ion-select-option>
-                      <ion-select-option value="quinta-feira">Quinta-Feira</ion-select-option>
-                      <ion-select-option value="sexta-feira">Sexta-Feira</ion-select-option>
-                      <ion-select-option value="sabado">Sábado</ion-select-option>
-                      <ion-select-option value="domingo">Domingo</ion-select-option>
-                    </ion-select>
-                  </ion-col>
-                  <ion-col size="12" size-sm="6">
-                    <ion-select label="Término" label-placement="floating" fill="outline" formControlName="diaFim">
-                      <ion-select-option value="segunda">Segunda-Feira</ion-select-option>
-                      <ion-select-option value="terca-feira">Terca-Feira</ion-select-option>
-                      <ion-select-option value="quarta-feira">Quarta-Feira</ion-select-option>
-                      <ion-select-option value="quinta-feira">Quinta-Feira</ion-select-option>
-                      <ion-select-option value="sexta-feira">Sexta-Feira</ion-select-option>
-                      <ion-select-option value="sabado">Sábado</ion-select-option>
-                      <ion-select-option value="domingo">Domingo</ion-select-option>
-                    </ion-select>
+                  <ion-col size="12">
+                    <ion-item lines="none" >
+                      <!-- <ion-label>Escolha suas opções</ion-label> -->
+                      <ion-select multiple="true" formControlName="dias_de_ativacao" placeholder="Escolha os dias">
+                        <ion-select-option value="0">Segunda-feira</ion-select-option>
+                        <ion-select-option value="1">Terça-feira</ion-select-option>
+                        <ion-select-option value="2">Quarta-feira</ion-select-option>
+                        <ion-select-option value="3">Quinta-feira</ion-select-option>
+                        <ion-select-option value="4">Sexta-feira</ion-select-option>
+                        <ion-select-option value="5">Sábado</ion-select-option>
+                        <ion-select-option value="6">Domingo</ion-select-option>
+                      </ion-select>
+                    </ion-item>
                   </ion-col>
                 </ion-row> 
               </ion-col>

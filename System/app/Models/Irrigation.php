@@ -9,7 +9,7 @@ class Irrigation extends Model
 
     protected $fillable = [
         'horario_de_inicio',
-        'duracao',
+        'horario_de_termino',
         'status',
         'id_sensor'
     ];

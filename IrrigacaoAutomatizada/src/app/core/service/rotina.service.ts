@@ -7,7 +7,9 @@ import { Rotinas } from '../interface/Rotina';
   providedIn: 'root'
 })
 export class RotinaService {
-  private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/rotina'
+
+  private apiUrl: string = 'literate-space-engine-g99766vvgrrhwg4p-8000.app.github.dev/rotina' // Daniel
+  // private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/rotina' // Lucas
 
   constructor(private http: HttpClient) {
     console.log("URL requisitada(Rotina):", this.apiUrl);

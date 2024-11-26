@@ -12,7 +12,7 @@ class IrrigationSeeder extends Seeder
         DB::table('irrigations')->insert([
             [
                 'horario_de_inicio' => '06:00:00',
-                'duracao' => 30,
+                'horario_de_termino' => '06:40:00',
                 'status' => true,
                 'id_sensor' => 1,
                 // 'created_at' => now(),
@@ -20,7 +20,7 @@ class IrrigationSeeder extends Seeder
             ],
             [
                 'horario_de_inicio' => '18:00:00',
-                'duracao' => 45,
+                'horario_de_termino' => '19:00:00',
                 'status' => false,
                 'id_sensor' => 2,
                 // 'created_at' => now(),
@@ -28,7 +28,7 @@ class IrrigationSeeder extends Seeder
             ],
             [
                 'horario_de_inicio' => '12:00:00',
-                'duracao' => 20,
+                'horario_de_termino' => '12:30:00',
                 'status' => true,
                 'id_sensor' => 3,
                 // 'created_at' => now(),

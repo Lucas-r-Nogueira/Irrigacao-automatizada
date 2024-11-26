@@ -53,7 +53,7 @@ class IrrigationController extends Controller
     {
         $regras = [
             'horario_de_inicio' => ['required', 'date_format:H:i:s'],
-            'duracao' => ['required', 'integer', 'min:0'],
+            'horario_de_termino' => ['required', 'date_format:H:i:s'],
             'status' => ['required', 'boolean'],
             'id_sensor' => ['required', 'integer', 'min:0']
         ];
@@ -65,7 +65,7 @@ class IrrigationController extends Controller
 
         $irrigation = Irrigation::create([
             'horario_de_inicio' => $request->input('horario_de_inicio'),
-            'duracao' => $request->input('duracao'),
+            'horario_de_termino' => $request->input('horario_de_termino'),
             'status' => $request->input('status'),
             'id_sensor' => $request->input('id_sensor')
         ]);
@@ -78,7 +78,7 @@ class IrrigationController extends Controller
         $regras = [
             'id' => ['required', 'integer', 'min:0'],
             'horario_de_inicio' => ['nullable', 'date_format:H:i:s'],
-            'duracao' => ['nullable', 'integer', 'min:0'],
+            'horario_de_termino' => ['nullable', 'date_format:H:i:s'],
             'status' => ['nullable', 'boolean'],
             'id_sensor' => ['nullable', 'integer', 'min:0']
             ];
@@ -92,7 +92,7 @@ class IrrigationController extends Controller
         if(!$irrigation)
             return response()->json(['error' => 'Rotina não encontrada'], 404);
 
-        $atributos = ['horario_de_inicio', 'duracao', 'status', 'id_sensor'];
+        $atributos = ['horario_de_inicio', 'horario_de_termino', 'status', 'id_sensor'];
 
         foreach ($atributos as $atributo) {
             $request->input($atributo) !== null

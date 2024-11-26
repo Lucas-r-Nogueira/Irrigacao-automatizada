@@ -16,7 +16,7 @@ class Irrigations extends Migration
         Schema::create('irrigations', function (Blueprint $table) {
             $table->id();
             $table->time('horario_de_inicio');
-            $table->integer('duracao')->nullable();
+            $table->time('horario_de_termino');
             $table->boolean('status')->default(false);
             $table->unsignedBigInteger('id_sensor');
             $table->timestamps();

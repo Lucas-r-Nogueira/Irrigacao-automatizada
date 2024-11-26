@@ -1,17 +1,16 @@
 <div class="card">
   <div class="container__hora">
-    <p>{{ data.horario_de_inicio }} ~ 14:30</p>
+    <p>{{ data.horario_de_inicio }} ~ {{ data.horario_de_termino }}</p>
   </div>
   <div class="container__nome">
     <p>{{ data.nome }}</p>
   </div>
   <div class="container__datas">
-    <p><ion-icon name="calendar-outline"></ion-icon> {{ data.dias_de_ativacao}} </p>
+    <p><ion-icon name="calendar-outline"></ion-icon> {{ data.dias_de_ativacao }} </p>
   </div>
 
   <div class="line"></div>
   <div class="container__button">
-    <ion-button fill="clear" >Editar</ion-button>
-    <ion-button fill="clear" color="danger">Excluir</ion-button>
+    <ion-button fill="clear" color="danger"  (click)="excluirRotina()">Excluir</ion-button>
   </div>
 </div>

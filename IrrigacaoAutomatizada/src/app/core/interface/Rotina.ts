@@ -5,6 +5,6 @@ export interface Rotinas {
     dias_de_ativacao: string,
     diaInicio: string,
     diaFim: string,
-    horarioInicio: string,
-    horarioFim: string,
+    horario_de_inicio: string,
+    horario_de_termino: string,
 }

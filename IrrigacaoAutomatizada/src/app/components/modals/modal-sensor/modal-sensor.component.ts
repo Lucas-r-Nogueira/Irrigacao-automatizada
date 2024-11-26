@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';  // Para redirecionar após sucesso
 import { SensorService } from 'src/app/core/service/sensor.service';
 import { ModalController } from '@ionic/angular';  // Importando o ModalController
 

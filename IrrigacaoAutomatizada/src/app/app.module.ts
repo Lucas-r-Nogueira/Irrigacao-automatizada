@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule, 
     ReactiveFormsModule,
     HttpClientModule,

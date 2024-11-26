@@ -15,7 +15,7 @@ export class SensorService {
     console.log("URL requisitada(Sensor):", this.apiUrl);
   }
 
-  // Método para criar um sensor(Funcionando)
+  // Método para criar um sensor
   criarSensor(sensor: Sensores): Observable<Sensores> {
     console.log('Dados enviados para criação(Sensor):', sensor);
     return this.http.post<Sensores>(`${this.apiUrl}/adicionar/`, sensor);
@@ -43,6 +43,11 @@ export class SensorService {
       // Após a exclusão do sensor, notificamos que o sensor foi excluído
       tap(() => this.sensorDeletedSubject.next())
     );
+  }
+
+  // Método para atualizar um sensor existente
+  atualizarSensor(id: number, sensor: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}/`, sensor);
   }
 
   // Método para se inscrever na notificação de exclusão de sensor

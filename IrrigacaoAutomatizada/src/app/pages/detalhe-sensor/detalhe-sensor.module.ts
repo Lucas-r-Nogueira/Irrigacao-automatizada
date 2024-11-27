@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DetalheSensorPage } from './detalhe-sensor.page';
 import { ModalRotinaComponent } from 'src/app/components/modals/modal-rotina/modal-rotina.component';
 import { CardRotinaComponent } from 'src/app/components/card-rotina/card-rotina.component';
+import { ModalEditarSensorComponent } from 'src/app/components/modals/modal-editar-sensor/modal-editar-sensor.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { CardRotinaComponent } from 'src/app/components/card-rotina/card-rotina.
     DetalheSensorPageRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [DetalheSensorPage, ModalRotinaComponent, CardRotinaComponent]
+  declarations: [DetalheSensorPage, ModalRotinaComponent, CardRotinaComponent, ModalEditarSensorComponent]
 })
 export class DetalheSensorPageModule {}

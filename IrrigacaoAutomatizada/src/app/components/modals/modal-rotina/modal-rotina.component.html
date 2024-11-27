@@ -1,4 +1,4 @@
-<ion-modal #modal trigger="open-modal-rotina" [initialBreakpoint]="1" [breakpoints]="[0,1]">
+<ion-modal #modal trigger="open-modal-rotina">
   <ng-template>
     <ion-content>
       <ion-row class="container__title">
@@ -12,7 +12,6 @@
       <ion-row class="container__form">
         <ion-col>
           <form [formGroup]="formRotina" (ngSubmit)="onSubmit()">
-            <!--   -->
             <ion-row class="container__input_nome">
               <ion-col size="12">
                 <ion-title>Nome Rotina</ion-title>
@@ -31,7 +30,6 @@
                 <ion-row class="container__select">
                   <ion-col size="12">
                     <ion-item lines="none" >
-                      <!-- <ion-label>Escolha suas opções</ion-label> -->
                       <ion-select multiple="true" formControlName="dias_de_ativacao" placeholder="Escolha os dias">
                         <ion-select-option value="0">Segunda-feira</ion-select-option>
                         <ion-select-option value="1">Terça-feira</ion-select-option>

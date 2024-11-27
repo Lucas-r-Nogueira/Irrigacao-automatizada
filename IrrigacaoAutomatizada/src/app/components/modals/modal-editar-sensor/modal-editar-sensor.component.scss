@@ -1,0 +1,46 @@
+ion-modal {
+    --height: auto;
+  }
+  
+  .block {
+      width: 100%;
+      height: 400px;
+      display: flex;
+  }
+    
+  
+  .container__title{
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    ion-title{
+      font-weight: bold;
+    }
+  }
+  
+  .container__form{
+    width: 100%;
+    height: 350px;
+    padding: 0 20px;
+  
+    .container__input{
+      width: 100%;
+      height: 70%;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+  
+    .container__buttons{
+      height: 25%;
+      ion-col{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      ion-button {
+        margin: 0 auto;
+        --text-color: #ffff; 
+      }
+    }
+  }
+   

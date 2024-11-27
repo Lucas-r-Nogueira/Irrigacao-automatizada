@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { RotinaService } from 'src/app/core/service/rotina.service';
 import { SensorService } from 'src/app/core/service/sensor.service';
+import { ModalEditarSensorComponent } from 'src/app/components/modals/modal-editar-sensor/modal-editar-sensor.component';
 
 @Component({
   selector: 'app-detalhe-sensor',
@@ -19,6 +21,7 @@ export class DetalheSensorPage implements OnInit {
     private router: Router, 
     private sensorService: SensorService,
     private rotinaService: RotinaService,
+    private modalController: ModalController // ModalController para abrir o modal
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +44,8 @@ export class DetalheSensorPage implements OnInit {
       }
     )
     this.carregarRotinas(); // Carregar as rotinas ao inicializar
-  }
+    this.loadSensorDetails(); // Carregar os detalhes do sensor ao inicializar
+    }
 
   deleteSensor(): void {
     this.sensorService.deleteSensor(this.sensorId).subscribe(
@@ -113,4 +117,22 @@ export class DetalheSensorPage implements OnInit {
     this.rotinas = this.rotinas.filter(rotina => rotina.id !== rotinaId);
     console.log(`Rotina com ID ${rotinaId} removida da lista.`);
   }
+
+  // Abrir o modal para editar o sensor
+  async openEditModal() {
+    const modal = await this.modalController.create({
+      component: ModalEditarSensorComponent,
+      componentProps: {
+        sensorId: this.sensorId,
+        sensor: this.sensor
+      }
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.loadSensorDetails(); // Atualiza as informações do sensor após o modal ser fechado
+    });
+
+    return await modal.present();
+  }
+
 }

@@ -32,10 +32,4 @@ export class RotinaService {
       map(sensor => sensor.routines) // Acessa o atributo 'routines' do sensor
     );
   }
-  
-
-  // Método para editar (atualizar) uma rotina
-  editarRotina(id: number, dadosAtualizados: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/editar/${id}`, dadosAtualizados);
-  }
 }

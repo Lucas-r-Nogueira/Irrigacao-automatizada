@@ -13,7 +13,6 @@ export class ModalRotinaComponent implements OnInit {
   formRotina: FormGroup;
   @Input() sensorId!: number;
   @Output() rotinaCriada = new EventEmitter<void>(); // Emite um evento quando o sensor for criado com sucesso
-  selectedOptions: string[] = []; // Armazena as opções selecionadas
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,10 +27,10 @@ export class ModalRotinaComponent implements OnInit {
     this.formRotina = this.formBuilder.group({
       id_sensor: [this.sensorId, Validators.required],
       nome: [null, Validators.required],
-      dias_de_ativacao: [[]],
+      dias_de_ativacao: [null, Validators.required],
       horario_de_inicio: [null, Validators.required],
       horario_de_termino: [null, Validators.required],
-    })
+    });    
   }
 
   // Método para enviar os dados
@@ -56,23 +55,13 @@ export class ModalRotinaComponent implements OnInit {
     formValue.horario_de_inicio = horarioDeInicio.toLocaleTimeString('pt-BR', { hour12: false });
     formValue.horario_de_termino = horarioDeTermino.toLocaleTimeString('pt-BR', { hour12: false });
 
- 
-  // Inicializa a string de dias com underscores
-  let diasDeAtivacao = ['_', '_', '_', '_', '_', '_', '_']; // Um array de 7 caracteres ('_' para todos os dias inicialmente)
+      // Converte os dias selecionados em formato de 0 e 1
+  const diasSelecionados = formValue.dias_de_ativacao.map((dia: string) => parseInt(dia, 10));
+  formValue.dias_de_ativacao = this.gerarDiasParaFormulario(diasSelecionados);
 
-  // Mapeia os dias selecionados para a string de dias
-  const diasSemana = ['M', 'T', 'W', 'T', 'F', 'S', 'S']; // Representação dos dias da semana em inglês
-  formValue.dias_de_ativacao.forEach((dia: string) => {
-    const diaIndex = parseInt(dia);  // Transformar o valor do dia em índice
-    if (diaIndex >= 0 && diaIndex <= 6) {
-      diasDeAtivacao[diaIndex] = diasSemana[diaIndex];  // Substitui o valor no índice correspondente
-    }
-  });
-
-  // Junta os caracteres do array para formar a string final
-  formValue.dias_de_ativacao = diasDeAtivacao.join('');
-
-  console.log("Dias de ativação:", formValue.dias_de_ativacao); // Exibe o resultado no formato 'MTWTF__'
+    console.log("Dias selecionados:", diasSelecionados);
+    console.log("Dias de ativação gerados:", this.gerarDiasParaFormulario(diasSelecionados));
+    console.log("Dados enviados:", formValue);
 
     // Chama a service de criar o Rotina
     this.rotinaService.criarRotina(formValue).subscribe(
@@ -87,4 +76,20 @@ export class ModalRotinaComponent implements OnInit {
     );
   }
 
+  gerarDiasParaFormulario(diasSelecionados: number[]): string {
+    // Inicializa um array de 7 posições com '0'
+    const diasDeAtivacao = Array(7).fill('0');
+  
+    // Marca os dias selecionados com '1'
+    diasSelecionados.forEach(dia => {
+      if (dia >= 0 && dia < 7) {
+        diasDeAtivacao[dia] = '1';
+      }
+    });
+  
+    // Retorna a string no formato de 0 e 1
+    return diasDeAtivacao.join('');
+  }
+  
+  
 }

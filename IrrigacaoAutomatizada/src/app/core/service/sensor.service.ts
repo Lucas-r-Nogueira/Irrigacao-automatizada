@@ -47,7 +47,7 @@ export class SensorService {
 
   // Método para atualizar um sensor existente
   atualizarSensor(id: number, sensor: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}/`, sensor);
+    return this.http.put(`${this.apiUrl}/editar/`, sensor);
   }
 
   // Método para se inscrever na notificação de exclusão de sensor

@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SensorService } from 'src/app/core/service/sensor.service';
 import { ModalController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modal-editar-sensor',
@@ -9,11 +10,13 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal-editar-sensor.component.scss'],
 })
 export class ModalEditarSensorComponent implements OnInit {
-  @Input() sensorId!: number; // Receber o id do sensor
-  @Input() sensor: any; // Receber as informações do sensor
   formEditarSensor: FormGroup;
+  @Input() sensorId!: number;
+  sensorData: any;
+  @Output() sensorEditado = new EventEmitter<void>();
 
   constructor(
+    private Activaterouter: ActivatedRoute,
     private formBuilder: FormBuilder,
     private sensorService: SensorService,
     private modalController: ModalController
@@ -21,36 +24,48 @@ export class ModalEditarSensorComponent implements OnInit {
     this.formEditarSensor = new FormGroup({});
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Inicializando o formulário com validações
     this.formEditarSensor = this.formBuilder.group({
-      nome: [this.sensor?.nome, Validators.required], // Pré-preenchido com o nome atual
-      local: [this.sensor?.local, Validators.required], // Pré-preenchido com o local atual
-      descricao: [this.sensor?.descricao], // Pré-preenchido com a descrição atual
+      id: [ null, Validators.required],
+      nome: ['', Validators.required],
+      local: ['', Validators.required],
+      descricao: ['', Validators.required],
     });
+
+    // Buscar os dados do sensor pelo ID e preencher o formulário
+    this.sensorService.PegarSensor(this.sensorId).subscribe((sensor) => {
+      this.sensorData = sensor;
+      this.formEditarSensor.patchValue(sensor); // Preencher o formulário com os dados recebidos
+    });
+
   }
 
   // Método para enviar os dados e atualizar o sensor
-  onSubmit() {
+  onSubmit(): void{
+    console.log(this.formEditarSensor.value);
+    console.log('sensorId modalEditar:', this.sensorId);
+
     if (this.formEditarSensor.invalid) {
-      console.log("Formulário inválido");
+      console.error('Formulário inválido');
       return;
     }
 
     // Chama a service para atualizar o sensor
-    this.sensorService.atualizarSensor(this.sensorId, this.formEditarSensor.value).subscribe(
+    this.sensorService.atualizarSensor(this.formEditarSensor.value).subscribe(
       (response) => {
-        console.log("Sensor atualizado com sucesso!", response);
-        this.modalController.dismiss();
+        console.log('Sensor atualizado com sucesso!', response);
+        this.sensorEditado.emit();
+        this.modalController.dismiss(true); // Fecha o modal e informa que o sensor foi atualizado
       },
       (error) => {
-        console.error("Erro ao atualizar sensor", error);
+        console.error('Erro ao atualizar sensor', error);
       }
     );
   }
 
-  // Fechar o modal sem fazer alterações
-  closeModal() {
-    this.modalController.dismiss();
-  }
+    // Método para fechar o modal
+    onClose(): void {
+      this.modalController.dismiss(false); // Fecha o modal sem salvar
+    }
 }

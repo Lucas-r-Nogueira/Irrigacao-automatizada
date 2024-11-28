@@ -87,7 +87,7 @@ ion-header{
             }
         }
         .container__select{
-            height: 80px;
+            max-height: 80px;
             display: flex;
             justify-content: flex-end;
             .select__sensor{

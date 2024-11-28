@@ -71,11 +71,10 @@ class SensorController extends Controller
 
     public function update(Request $request)
     {
-
         $regras = [
             'id' => ['required', 'integer', 'min:0'],
             'nome' => ['nullable', 'string', 'max:255'],
-            'local' => ['nullable', 'string', 'max:255'],
+            'local' => ['nullable', 'string', 'max:255'], 
             'descricao' => ['nullable', 'string'],
             'ultima_leitura' => ['nullable', 'numeric', 'min:0']
         ];

@@ -9,7 +9,7 @@ import { Sensores } from '../interface/Sensores';
 export class SensorService {
   // private apiUrl: string = 'https://literate-space-engine-g99766vvgrrhwg4p-8000.app.github.dev/sensor'; // URL da API Lumen codespace (Daniel)
   private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
-  private sensorDeletedSubject = new Subject<void>();  // Subject para notificar quando um sensor for excluído
+  private sensorDeletedSubject = new Subject<void>();
 
   constructor(private http: HttpClient) {
     console.log("URL requisitada(Sensor):", this.apiUrl);
@@ -29,12 +29,17 @@ export class SensorService {
   // Método Consultar sensor específico
   PegarSensor(id: number): Observable<Sensores> {
     console.log("Dados do sensor");
-    return this.http.get<Sensores>(`${this.apiUrl}/${id}/`);
+    return this.http.get<Sensores>(`${this.apiUrl}/${id}`);
   }
 
   // Método pegar rotinas do sensor
   pegarRotinas(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/${id}/rotinas`);
+  }
+
+  // SensorService - ajustar a URL para incluir o id do sensor
+  atualizarSensor(sensor: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/editar`, sensor);
   }
 
   // Método para deletar um sensor
@@ -43,11 +48,6 @@ export class SensorService {
       // Após a exclusão do sensor, notificamos que o sensor foi excluído
       tap(() => this.sensorDeletedSubject.next())
     );
-  }
-
-  // Método para atualizar um sensor existente
-  atualizarSensor(id: number, sensor: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/editar/`, sensor);
   }
 
   // Método para se inscrever na notificação de exclusão de sensor

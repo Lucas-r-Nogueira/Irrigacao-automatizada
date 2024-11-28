@@ -6,9 +6,9 @@
   </ion-header>
   <ion-row class="container__informacao_sensor">
     <ion-col size="12" size-sm="6">
-      <p class="nome__sensor">{{ sensor.nome}}</p>
-      <p class="local__sensor">{{ sensor.local }}</p>
-      <p class="descricao__sensor">{{ sensor.descricao }}</p>
+      <p class="nome__sensor">{{ sensorData.nome}}</p>
+      <p class="local__sensor">{{ sensorData.local }}</p>
+      <p class="descricao__sensor">{{ sensorData.descricao }}</p>
     </ion-col>
     <ion-col size="12" size-sm="6">
       <ion-button class="btn__editar" color="primary" fill="outline" id="open-modal-editar-sensor"> Editar Informações</ion-button>
@@ -19,7 +19,7 @@
   <ion-row class="container__umidade">
     <ion-col size="12" size-sm="6">
       <p class="title">Umidade( % )</p>
-      <p class="umidade">{{ sensor.ultima_leitura}}%</p>
+      <p class="umidade">{{ sensorData.ultima_leitura}}%</p>
     </ion-col>
     <ion-col size="12" size-sm="6">
       <p class="text">O valor à cima representa a umidade do solo, indicando a porcentagem de umidade presente na terra. Esse valor ajuda a entender o nível de umidade, que é essencial para o crescimento das plantas e para a saúde do solo.</p>
@@ -52,7 +52,7 @@
         </ion-row>
       </ion-content>
       <app-modal-rotina (rotinaCriada)="onRotinaCriada()" [sensorId]="sensorId"></app-modal-rotina>
-      <app-modal-editar-sensor></app-modal-editar-sensor>
+      <app-modal-editar-sensor (sensorEditado)="onSensorEditado()" [sensorId]="sensorId"></app-modal-editar-sensor>
     </ion-col>
   </ion-row>
 </ion-content>

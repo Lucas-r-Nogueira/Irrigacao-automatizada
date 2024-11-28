@@ -13,12 +13,13 @@ import { ModalEditarSensorComponent } from 'src/app/components/modals/modal-edit
 })
 export class DetalheSensorPage implements OnInit {
   rotinas: any[] = []; // Variável para armazenar as rotinas
-  sensor: any;
+  sensorData: any;
   sensorId!: number;
 
-  constructor( 
-    private Activaterouter: ActivatedRoute, 
-    private router: Router, 
+
+  constructor(
+    private Activaterouter: ActivatedRoute,
+    private router: Router,
     private sensorService: SensorService,
     private rotinaService: RotinaService,
     private modalController: ModalController // ModalController para abrir o modal
@@ -34,29 +35,36 @@ export class DetalheSensorPage implements OnInit {
     });
     console.log("ID sensor selecionado: ", this.sensorId);
 
-    // Pegando as informações do sensor
-    this.sensorService.PegarSensor(this.sensorId).subscribe(
-      (data) => {
-        this.sensor = data;
-      },
-      (error) => {
-        console.error("Erro ao exibir sensor: ", error);
-      }
-    )
+    this.pegarSensor();
     this.carregarRotinas(); // Carregar as rotinas ao inicializar
-    this.loadSensorDetails(); // Carregar os detalhes do sensor ao inicializar
-    }
+  }
 
   deleteSensor(): void {
     this.sensorService.deleteSensor(this.sensorId).subscribe(
       () => {
-        console.log('Sensor com ID ${this.sensorId} excluído com sucesso.');
+        console.log(`Sensor com ID ${this.sensorId} excluído com sucesso.`);
         this.router.navigate(['/home']); // Redireciona para a página inicial após exclusão
       },
       (error) => {
         console.error('Erro ao excluir o sensor:', error);
       }
     );
+  }
+
+  // Pegando as informações do sensor
+  pegarSensor() {
+    this.sensorService.PegarSensor(this.sensorId).subscribe(
+      (data) => {
+        this.sensorData = data;
+      },
+      (error) => {
+        console.error("Erro ao exibir sensor: ", error);
+      }
+    )
+  }
+
+  onSensorEditado(){
+    this.pegarSensor();
   }
 
   excluirRotina(rotinaId: number) {
@@ -72,7 +80,6 @@ export class DetalheSensorPage implements OnInit {
       );
     }
   }
-  
 
   fetchRotina(): void {
     this.rotinaService.listarRotinasPorSensor(this.sensorId).subscribe(
@@ -100,17 +107,9 @@ export class DetalheSensorPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  loadSensorDetails() {
-    if (this.sensorId !== null) {
-      console.log('Carregar detalhes do sensor com ID: ${this.sensorId}');
-    } else {
-      console.error('sensorId inválido');
-    }
-  }
-
   // Método chamado quando uma rotina é criada
   onRotinaCriada() {
-    this.fetchRotina(); // Atualiza a lista de rotinas automaticamente
+    this.fetchRotina();
   }
 
   onRotinaExcluida(rotinaId: number) {
@@ -119,20 +118,21 @@ export class DetalheSensorPage implements OnInit {
   }
 
   // Abrir o modal para editar o sensor
-  async openEditModal() {
+  async openEditModal(): Promise<void> {
     const modal = await this.modalController.create({
       component: ModalEditarSensorComponent,
-      componentProps: {
-        sensorId: this.sensorId,
-        sensor: this.sensor
+      componentProps: { sensorId: this.sensorId },
+    });
+
+    // Verifica se o modal foi fechado com sucesso (sensor atualizado)
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        this.deleteSensor();
       }
     });
-
-    modal.onDidDismiss().then(() => {
-      this.loadSensorDetails(); // Atualiza as informações do sensor após o modal ser fechado
-    });
-
-    return await modal.present();
+    this.pegarSensor();
+    await modal.present();
   }
+
 
 }

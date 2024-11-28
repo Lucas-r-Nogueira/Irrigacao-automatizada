@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SensorService } from 'src/app/core/service/sensor.service';
-import { ModalController } from '@ionic/angular';  // Importando o ModalController
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-sensor',
@@ -28,7 +28,7 @@ export class ModalSensorComponent implements OnInit {
       nome: [null, Validators.required], // Obrigatório 
       local: [null, Validators.required], // Obrigatório
       descricao: [null],
-      ultima_leitura:  [0],
+      ultima_leitura:  [25.5],
     })
   }
 

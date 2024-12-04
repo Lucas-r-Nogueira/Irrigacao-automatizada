@@ -9,6 +9,8 @@ import { Sensores } from '../interface/Sensores';
 export class SensorService {
   // private apiUrl: string = 'https://literate-space-engine-g99766vvgrrhwg4p-8000.app.github.dev/sensor'; // URL da API Lumen codespace (Daniel)
   private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
+  private esp32ApiUrl: string = 'http://<IP_DO_ESP32>/umidade'; // IP DO ESP
+
   private sensorDeletedSubject = new Subject<void>();
 
   constructor(private http: HttpClient) {
@@ -37,7 +39,7 @@ export class SensorService {
     return this.http.get<any[]>(`${this.apiUrl}/${id}/rotinas`);
   }
 
-  // SensorService - ajustar a URL para incluir o id do sensor
+  // SensorService
   atualizarSensor(sensor: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/editar`, sensor);
   }
@@ -45,7 +47,7 @@ export class SensorService {
   // Método para deletar um sensor
   deleteSensor(id: number): Observable<Sensores> {
     return this.http.delete<Sensores>(`${this.apiUrl}/${id}`).pipe(
-      // Após a exclusão do sensor, notificamos que o sensor foi excluído
+      // Após a exclusão do sensor, notifica que o sensor foi excluído
       tap(() => this.sensorDeletedSubject.next())
     );
   }
@@ -54,4 +56,11 @@ export class SensorService {
   onSensorDeleted(): Observable<void> {
     return this.sensorDeletedSubject.asObservable();
   }
+
+  // Pegar a umidade do sensor
+  obterUmidade(): Observable<any> {
+    console.log('Solicitando dados de umidade do ESP32');
+    return this.http.get<any>(this.esp32ApiUrl);
+  }
+
 }

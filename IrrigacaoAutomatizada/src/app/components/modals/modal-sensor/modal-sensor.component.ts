@@ -11,7 +11,7 @@ import { ModalController } from '@ionic/angular';
 export class ModalSensorComponent implements OnInit {
   formSensor: FormGroup;
   @Output() sensorCriado = new EventEmitter<void>(); // Emite um evento quando o sensor for criado com sucesso
-  
+
   // Construindo o forms, configurando a service e o router
   constructor(
     private formBuilder: FormBuilder,
@@ -28,12 +28,25 @@ export class ModalSensorComponent implements OnInit {
       nome: [null, Validators.required], // Obrigatório 
       local: [null, Validators.required], // Obrigatório
       descricao: [null],
-      ultima_leitura:  [25.5],
+      ultima_leitura: [null],
     })
+
+    // Método para buscar o valor da umidade e preencher o campo 'ultima_leitura'
+    this.sensorService.obterUmidade().subscribe(
+      (data) => {
+        // Atribuindo o valor da umidade ao campo ultima_leitura
+        this.formSensor.patchValue({
+          ultima_leitura: data.umidade // Substitua 'umidade' pela chave correta no JSON da resposta
+        });
+      },
+      (error) => {
+        console.error("Erro ao obter umidade:", error);
+      }
+    );
   }
 
   // Método para enviar os dados
-   onSubmit() {
+  onSubmit() {
     console.log(this.formSensor.value);
     if (this.formSensor.invalid) {
       console.log("Formulário inválido");

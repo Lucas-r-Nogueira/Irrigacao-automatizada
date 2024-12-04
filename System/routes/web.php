@@ -45,7 +45,8 @@ $router->group(['prefix' => 'rotina'], function () use ($router) {
 
 $router->group(['prefix' => 'irrigacao'], function () use ($router) {
     $router->get('/{id}/sensor', 'IrrigationController@getSensorOfIrrigation');
-    $router->put('/{id}/finalizar', 'IrrigationController@finishIrrigashion');
+    $router->post('/{id_sensor}/iniciar', 'IrrigationController@startIrrigation');
+    $router->post('/{id_sensor}/finalizar', 'IrrigationController@finishIrrigation');
     $router->get('/', 'IrrigationController@index');
     $router->get('/{id}', 'IrrigationController@show');
     $router->post('/adicionar', 'IrrigationController@store');

@@ -5,23 +5,39 @@ namespace App\Http\Controllers;
 use App\Models\Irrigation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
+
 
 class IrrigationController extends Controller
 {
 
-    public function finishIrrigashion($id) {
-        $irrigation = Irrigation::find($id);
-
-        if(!$irrigation)
-            return response()->json(['error' => 'Irrigação não encontrada'], 404);
-
-        $irrigation->status = true;
-
-        $irrigation->save();
-
-        return response()->json($irrigation, 200);
-
+    public function startIrrigation($id_sensor) {
+        $horarioAtual = Carbon::now()->format('H:i:s');
+        $irrigation = Irrigation::create([
+            'horario_de_inicio' => $horarioAtual,
+            'id_sensor' => $id_sensor,
+        ]);
+    
+        return response()->json($irrigation, 201);
     }
+    
+
+    public function finishIrrigation($id_sensor) {
+        $irrigation = Irrigation::where('id_sensor', $id_sensor)
+                                ->where('status', false)
+                                ->first();
+    
+        if (!$irrigation) {
+            return response()->json(['error' => 'Nenhuma irrigação inativa encontrada para este sensor'], 404);
+        }
+    
+        $irrigation->status = true;
+        $irrigation->horario_de_termino = Carbon::now()->format('H:i:s');
+        $irrigation->save();
+    
+        return response()->json($irrigation, 200);
+    }
+        
 
     public function getSensorOfIrrigation($id) {
         $irrigations = Irrigation::with('sensorIrrigation')->find($id);

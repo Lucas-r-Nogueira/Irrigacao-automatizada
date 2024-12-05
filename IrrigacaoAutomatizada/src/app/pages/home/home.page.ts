@@ -8,6 +8,8 @@ import { SensorService } from 'src/app/core/service/sensor.service';
 })
 export class HomePage implements OnInit {
   sensores: any[] = []; // Variável para armazenar os sensores
+  historicoIrrigacao: any[] = []; // Variável para armazenar o histórico de irrigação
+  sensorSelecionado: number = 0; // ID do sensor selecionado
 
   constructor(private dadosSensor: SensorService) { }
 
@@ -43,9 +45,28 @@ export class HomePage implements OnInit {
     );
   }
 
+  // Método chamado quando um sensor é selecionado no select
+  onSensorSelecionado(sensorId: number): void {
+    console.log('ID do sensor selecionado:', sensorId);
+    this.carregarIrrigacoes(sensorId); // Chama o método para carregar as irrigações
+  }
+
   // Método chamado quando um sensor é criado
   onSensorCriado() {
     this.fetchSensores(); // Atualiza a lista de sensores
+  }
+
+  // Método para carregar o histórico de irrigações do sensor
+  carregarIrrigacoes(sensorId: number): void {
+    this.dadosSensor.listarIrrigacoesPorSensor(sensorId).subscribe({
+      next: (irrigacoes) => {
+        this.historicoIrrigacao = irrigacoes; // Atualiza o array de histórico
+        console.log('Irrigações carregadas:', this.historicoIrrigacao);
+      },
+      error: (err) => {
+        console.error('Erro ao carregar irrigações:', err);
+      }
+    });
   }
 
 }

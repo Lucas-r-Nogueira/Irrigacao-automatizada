@@ -24,7 +24,6 @@ export class CardRotinaComponent implements OnInit {
   excluirRotina() {
     this.rotina.deleteRotina(this.data.id).subscribe(
       () => {
-        console.log('Rotina excluída com sucesso.');
         this.rotinaExcluida.emit(this.data.id); // Emite o ID da rotina excluída
       },
       (error) => {

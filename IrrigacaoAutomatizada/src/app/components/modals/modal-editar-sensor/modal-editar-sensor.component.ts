@@ -44,7 +44,6 @@ export class ModalEditarSensorComponent implements OnInit {
   // Método para enviar os dados e atualizar o sensor
   onSubmit(): void{
     console.log(this.formEditarSensor.value);
-    console.log('sensorId modalEditar:', this.sensorId);
 
     if (this.formEditarSensor.invalid) {
       console.error('Formulário inválido');
@@ -54,7 +53,6 @@ export class ModalEditarSensorComponent implements OnInit {
     // Chama a service para atualizar o sensor
     this.sensorService.atualizarSensor(this.formEditarSensor.value).subscribe(
       (response) => {
-        console.log('Sensor atualizado com sucesso!', response);
         this.sensorEditado.emit();
         this.modalController.dismiss(true); // Fecha o modal e informa que o sensor foi atualizado
       },

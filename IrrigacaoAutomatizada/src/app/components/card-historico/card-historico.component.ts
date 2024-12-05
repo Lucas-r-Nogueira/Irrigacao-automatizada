@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-card-historico',
@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-historico.component.scss'],
 })
 export class CardHistoricoComponent  implements OnInit {
-
+  @Input() data: any; // Dados recebidos do pai  
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
 }

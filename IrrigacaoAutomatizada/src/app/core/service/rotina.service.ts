@@ -11,9 +11,7 @@ export class RotinaService {
   private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/rotina'
   private apiUrlsensor: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'
 
-  constructor(private http: HttpClient) {
-    console.log("URL requisitada(Rotina):", this.apiUrl);
-  }
+  constructor(private http: HttpClient) {  }
 
   // Método para criar Rotina
   criarRotina(rotina: Rotinas): Observable<Rotinas> {

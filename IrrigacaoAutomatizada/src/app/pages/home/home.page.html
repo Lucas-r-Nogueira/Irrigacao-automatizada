@@ -39,30 +39,29 @@
           <ion-title>Histórico</ion-title>
         </ion-col>
         <ion-col class="container__select">
-            <ion-select label="Selecione um sensor" label-placement="floating" fill="outline" class="select__sensor">
-              <ion-select-option  *ngFor="let sensor of sensores" [value]="sensor.Id" > {{ sensor.nome }}</ion-select-option>
+            <ion-select label="Selecione um sensor"  (ionChange)="onSensorSelecionado($event.detail.value)" label-placement="floating" fill="outline" class="select__sensor">
+              <ion-select-option *ngFor="let sensor of sensores" [value]="sensor.id"> {{ sensor.nome }}</ion-select-option>
             </ion-select>  
         </ion-col>
       </ion-row>
 
       <ion-row class="container__carrossel_historico">
-        <ion-col>
+        <ion-col *ngIf="historicoIrrigacao && historicoIrrigacao.length > 0; else noSensorSelected">
           <swiper-container loop="false" navigation="false" id="carrossel__historico" grabCursor="true" centeredSlides="false">
-            <swiper-slide>
-              <app-card-historico></app-card-historico>
-            </swiper-slide>
-            <swiper-slide>
-              <app-card-historico></app-card-historico>
-            </swiper-slide>
-            <swiper-slide>
-              <app-card-historico></app-card-historico>
-            </swiper-slide>
-            <swiper-slide>
-              <app-card-historico></app-card-historico>
+            <swiper-slide *ngFor="let irrigacao of historicoIrrigacao">
+              <app-card-historico [data]="irrigacao"></app-card-historico>
             </swiper-slide>
           </swiper-container>
         </ion-col>
       </ion-row>
+      <ng-template #noSensorSelected>
+        <ion-row class="container__carrossel_historico">
+          <ion-col>
+            <p class="mensagem-nenhum-sensor">Nenhum sensor foi selecionado ou não há irrigações para este sensor.</p>
+          </ion-col>
+        </ion-row>
+      </ng-template>
+      
     </ion-col>
   </ion-row>
 </ion-content>

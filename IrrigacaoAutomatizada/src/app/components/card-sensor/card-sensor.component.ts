@@ -21,7 +21,6 @@ export class CardSensorComponent  implements OnInit {
   }
 
   goToDetail(id: number) {  
-    console.log("Id sensor: ", id);
     this.router.navigate(['/detalhe-sensor/', id]);
   }
   carregarUmidade() {

@@ -100,6 +100,14 @@ ion-header{
     .container__carrossel_historico{
         width: 100%;
         height: 320px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .mensagem-nenhum-sensor{
+            color: var(--ion-color-primary);
+            font-weight: bold;
+            text-align: center;
+        }
         #carrossel__historico{
             width: 100%;
             height: 320px;

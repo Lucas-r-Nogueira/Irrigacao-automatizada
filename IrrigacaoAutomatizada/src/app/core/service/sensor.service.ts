@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, tap } from 'rxjs';
+import { map, Observable, Subject, tap } from 'rxjs';
 import { Sensores } from '../interface/Sensores';
 
 @Injectable({
@@ -13,9 +13,7 @@ export class SensorService {
 
   private sensorDeletedSubject = new Subject<void>();
 
-  constructor(private http: HttpClient) {
-    console.log("URL requisitada(Sensor):", this.apiUrl);
-  }
+  constructor(private http: HttpClient) {  }
 
   // Método para criar um sensor
   criarSensor(sensor: Sensores): Observable<Sensores> {
@@ -28,9 +26,15 @@ export class SensorService {
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
 
+  // Método para listar as irrigações de um sensor específico
+  listarIrrigacoesPorSensor(sensorId: number): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/${sensorId}/irrigacoes`).pipe(
+      map(sensor => sensor.irrigations) // Mapeia diretamente o atributo 'irrigations'
+    );
+  }
+
   // Método Consultar sensor específico
   PegarSensor(id: number): Observable<Sensores> {
-    console.log("Dados do sensor");
     return this.http.get<Sensores>(`${this.apiUrl}/${id}`);
   }
 
@@ -39,7 +43,7 @@ export class SensorService {
     return this.http.get<any[]>(`${this.apiUrl}/${id}/rotinas`);
   }
 
-  // SensorService
+  // Método para Atualizar um sensor
   atualizarSensor(sensor: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/editar`, sensor);
   }

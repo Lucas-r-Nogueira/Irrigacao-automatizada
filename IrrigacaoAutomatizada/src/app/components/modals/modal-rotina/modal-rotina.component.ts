@@ -59,14 +59,9 @@ export class ModalRotinaComponent implements OnInit {
   const diasSelecionados = formValue.dias_de_ativacao.map((dia: string) => parseInt(dia, 10));
   formValue.dias_de_ativacao = this.gerarDiasParaFormulario(diasSelecionados);
 
-    console.log("Dias selecionados:", diasSelecionados);
-    console.log("Dias de ativação gerados:", this.gerarDiasParaFormulario(diasSelecionados));
-    console.log("Dados enviados:", formValue);
-
     // Chama a service de criar o Rotina
     this.rotinaService.criarRotina(formValue).subscribe(
       (response) => {
-        console.log("Rotina criada com sucesso!");
         this.rotinaCriada.emit(); // Emite o evento de sucesso
         this.modalController.dismiss();
       },

@@ -28,21 +28,8 @@ export class ModalSensorComponent implements OnInit {
       nome: [null, Validators.required], // Obrigatório 
       local: [null, Validators.required], // Obrigatório
       descricao: [null],
-      ultima_leitura: [null],
+      ultima_leitura: [25.5],
     })
-
-    // Método para buscar o valor da umidade e preencher o campo 'ultima_leitura'
-    this.sensorService.obterUmidade().subscribe(
-      (data) => {
-        // Atribuindo o valor da umidade ao campo ultima_leitura
-        this.formSensor.patchValue({
-          ultima_leitura: data.umidade // Substitua 'umidade' pela chave correta no JSON da resposta
-        });
-      },
-      (error) => {
-        console.error("Erro ao obter umidade:", error);
-      }
-    );
   }
 
   // Método para enviar os dados

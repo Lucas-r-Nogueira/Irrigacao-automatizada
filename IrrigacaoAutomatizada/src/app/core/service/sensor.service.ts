@@ -9,7 +9,6 @@ import { Sensores } from '../interface/Sensores';
 export class SensorService {
   // private apiUrl: string = 'https://literate-space-engine-g99766vvgrrhwg4p-8000.app.github.dev/sensor'; // URL da API Lumen codespace (Daniel)
   private apiUrl: string = 'https://secret-broomstick-6q95wxj6649c5q76-8000.app.github.dev/sensor'; // URL da API Lumen codespace (ramalho)
-  private esp32ApiUrl: string = 'http://<IP_DO_ESP32>/umidade'; // IP DO ESP
 
   private sensorDeletedSubject = new Subject<void>();
 
@@ -59,12 +58,6 @@ export class SensorService {
   // Método para se inscrever na notificação de exclusão de sensor
   onSensorDeleted(): Observable<void> {
     return this.sensorDeletedSubject.asObservable();
-  }
-
-  // Pegar a umidade do sensor
-  obterUmidade(): Observable<any> {
-    console.log('Solicitando dados de umidade do ESP32');
-    return this.http.get<any>(this.esp32ApiUrl);
   }
 
 }

@@ -10,30 +10,33 @@ class IrrigationSeeder extends Seeder
     public function run()
     {
         DB::table('irrigations')->insert([
-            [
-                'horario_de_inicio' => '06:00:00',
-                'horario_de_termino' => '06:40:00',
-                'status' => true,
-                'id_sensor' => 1,
-                // 'created_at' => now(),
-                // 'updated_at' => now(),
-            ],
-            [
-                'horario_de_inicio' => '18:00:00',
-                'horario_de_termino' => '19:00:00',
-                'status' => false,
-                'id_sensor' => 2,
-                // 'created_at' => now(),
-                // 'updated_at' => now(),
-            ],
-            [
-                'horario_de_inicio' => '12:00:00',
-                'horario_de_termino' => '12:30:00',
-                'status' => true,
-                'id_sensor' => 3,
-                // 'created_at' => now(),
-                // 'updated_at' => now(),
-            ],
+                [
+                    "id"=> 1,
+                    "horario_de_inicio"=> "19:04:35",
+                    "horario_de_termino"=> "15:14:19",
+                    "status"=> true,
+                    "id_sensor"=> 1,
+                    "created_at"=> "2024-12-04T19:04:35.000000Z",
+                    "updated_at"=> "2024-12-06T15:14:19.000000Z"
+                ],
+                [
+                    "id"=> 2,
+                    "horario_de_inicio"=> "19:04:35",
+                    "horario_de_termino"=> "15:14:19",
+                    "status"=> true,
+                    "id_sensor"=> 3,
+                    "created_at"=> "2024-12-04T19:04:35.000000Z",
+                    "updated_at"=> "2024-12-06T15:14:19.000000Z"
+                ],
+                [
+                    "id" => 3,
+                    "horario_de_inicio" => "15:11:17",
+                    "horario_de_termino" => "15:11:17",
+                    "status" => true, 
+                    "id_sensor" => "1",
+                    "created_at" => "2024-12-06T15:11:17.000000Z",
+                    "updated_at" => "2024-12-06T15:11:17.000000Z"
+                ],          
         ]);
     }
 }
